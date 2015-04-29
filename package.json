@@ -1,0 +1,13 @@
+{
+  "name": "hax",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "onchange *.html *.css -- npm run build",
+    "build": "autoprefixer style.css -o style.min.css",
+    "dev": "simple-server 8080"
+  },
+  "author": "",
+  "license": "ISC"
+}
