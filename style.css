@@ -8,6 +8,11 @@ input::-moz-focus-inner {
   padding: 0;
 }
 
+html {
+  font-size: 14px;
+}
+
+
 html, body {
   height: 100%;
 }
@@ -16,12 +21,12 @@ body {
   background: #f4f4f4;
   color: #333;
   font-family: 'Fira Sans', sans-serif;
-  font-size: 14px;
+  font-size: 100%;
   font-weight: 400;
   margin: 0;
 }
 
-#outer-wrapper {
+.outer-wrapper {
   box-shadow: 0 4px #C13832 inset;
 }
 
@@ -52,7 +57,7 @@ body {
 }
 
 .section.masthead {
-  padding-top: 1em;
+  padding-top: 2.25rem;
   position: relative;
 }
 
@@ -71,7 +76,6 @@ body {
 .branding h1 {
   font-size: 4em;
   line-height: 1em;
-  margin-top: .4em;
   text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
@@ -88,6 +92,7 @@ body {
 .grid {
   list-style-type: none;
   padding: 0;
+  margin-top: 16px;
 }
 
 .feature {
@@ -102,14 +107,25 @@ body {
 }
 .feature h1 {
   font-size: calc(1.5em + 2vw);
-  line-height: 1.1em;
-  text-align: center;
   font-weight: 400;
+  line-height: 1.2em;
+  text-align: center;
 }
-.feature .block {
+.feature__pane {
   height: 192px;
-  padding: 24px 32px;
   overflow: hidden;
+  padding: 38px;
+  position: relative;
+}
+.feature__label {
+  background: rgba(0,0,0,.5);
+  font-size: .8rem;
+  font-weight: 300;
+  left: 0;
+  padding: .5em 1em .4em;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0;
 }
 
 
@@ -118,7 +134,7 @@ body {
   color: #fff;
 }
 .feature.cat--trainspotting img {
-  margin-top: 2em;
+  margin-top: 1em;
   width: calc(120% - 20vw);
   position: relative;
   left: calc(((120% - 20vw) - 100%) / -2);
@@ -126,16 +142,13 @@ body {
 }
 
 .search__input {
-  flex: 1;
-  font-size: 1.2em;
-  margin-right: 1em;
-  padding-left: .5em;
+  font-size: 1rem;
+  font-family: inherit;
+  padding: .3em .5em .1em;
+  width: 100%;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 0 1px #fff;
 }
-
-.search__form {
-  display: flex;
-}
-
 
 /* demo styles */
 
@@ -151,7 +164,6 @@ h1, h2, h3, h4, h5 {
 
 .heading {
   color: #C13832;
-  margin-bottom: 1em;
 }
 
 
@@ -185,7 +197,7 @@ h1, h2, h3, h4, h5 {
 }
 
 @media all and (max-width: 639px) {
-  .grid__item {
+  .grid__item:nth-child(n+2) {
     margin-top: 32px;
   }
   .branding {
@@ -194,12 +206,15 @@ h1, h2, h3, h4, h5 {
   .block + .block {
     margin-top: 16px;
   }
+  .search__form {
+    display: none;
+  }
 }
 
 
 @media all and (min-width: 640px) {
 
-  body {
+  html {
     font-size: 16px;
   }
 
@@ -222,6 +237,7 @@ h1, h2, h3, h4, h5 {
   .block--3 { flex: 3; }
 
   .grid {
+    margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
   }
@@ -239,6 +255,7 @@ h1, h2, h3, h4, h5 {
 
   .branding h1 {
     text-align: left;
+    font-size: 5em;
   }
 
   .section {
@@ -248,7 +265,8 @@ h1, h2, h3, h4, h5 {
     margin-top: 32px;
   }
 
-  .feature .block {
+  .feature__pane {
     height: 256px;
+    padding-top: 48px;
   }
 }
