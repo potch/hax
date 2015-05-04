@@ -12,7 +12,6 @@ html {
   font-size: 14px;
 }
 
-
 html, body {
   height: 100%;
 }
@@ -23,6 +22,7 @@ body {
   font-family: 'Fira Sans', sans-serif;
   font-size: 100%;
   font-weight: 400;
+  line-height: 1.4;
   margin: 0;
 }
 
@@ -137,12 +137,14 @@ body {
 .feature.cat--trainspotting {
   background: #19A1E6;
   color: #fff;
+  --var-size: 120%;
+  --var-adjust: 20vw;
 }
 .feature.cat--trainspotting img {
   margin-top: 1em;
-  width: calc(120% - 20vw);
+  width: calc(var(--var-size) - var(--var-adjust));
   position: relative;
-  left: calc(((120% - 20vw) - 100%) / -2);
+  left: calc(((var(--var-size) - var(--var-adjust)) - 100%) / -2);
   display: block;
 }
 
@@ -176,8 +178,6 @@ h1, h2, h3, h4, h5 {
   color: #C13832;
 }
 
-
-
 .masthead {
   color: #333;
 }
@@ -197,13 +197,28 @@ h1, h2, h3, h4, h5 {
   background: #fff;
 }
 
-
 .avatar {
   background: #ccc;
   float: left;
-  height: 48px;
+  height: 64px;
   margin: 0 1em 1em 0;
-  width: 48px;
+  width: 64px;
+}
+
+.post__tease {
+  clear: both;
+}
+
+.heading a {
+  text-decoration: none;
+}
+
+.branding a {
+  color: #333;
+}
+
+.main-content a {
+  color: #A40106;
 }
 
 @media all and (max-width: 639px) {
@@ -224,11 +239,16 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+@media all and (min-width: 700px) {
+  .branding h1 {
+    font-size: 5em;
+  }
+}
 
 @media all and (min-width: 640px) {
 
   html {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   #tabzilla {
@@ -287,11 +307,6 @@ h1, h2, h3, h4, h5 {
     margin-left: 32px;
   }
 
-  .branding h1 {
-    text-align: left;
-    font-size: 5em;
-  }
-
   .section {
     padding: 0 32px;
   }
@@ -304,6 +319,10 @@ h1, h2, h3, h4, h5 {
     padding-top: 48px;
   }
 
+  .branding h1 {
+    text-align: left;
+  }
+
   .social {
     position: absolute;
     right: 180px;
@@ -313,7 +332,7 @@ h1, h2, h3, h4, h5 {
   .social__link {
     display: inline-block;
     margin-right: .5em;
-    color: inherit;
+    color: #333;
   }
   .social__link.twitter:hover {
     color: #55ACEE;
