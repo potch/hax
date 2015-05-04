@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mozilla Hacks</title>
+  <link href="//fonts.googleapis.com/css?family=Fira+Sans:400,500" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" media="all" href="https://www.mozilla.org/tabzilla/media/css/tabzilla.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.min.css">
+</head>
+<body class="home">
+  <div class="outer-wrapper">
+    <header class="masthead section row">
+      <a aria-label="Mozilla links" href="#" id="tabzilla">Mozilla</a>
+      <section class="branding block block--3">
+        <h1><a href="/home.html"><img src="dino.svg" alt="Mozilla"><span>Hacks</span></a></h1>
+      </section>
+      <div class="search block block--2">
+        <form class="search__form">
+          <input type="search" class="search__input" placeholder="Search Mozilla Hacks">
+          <i class="fa fa-search search__badge"></i>
+        </form>
+      </div>
+      <nav class="social">
+        <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube"></i></a>
+        <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter"></i></a>
+        <a class="social__link rss" href="" title="Hacks"><i class="fa fa-rss"></i></a>
+      </nav>
+    </header>
+    <div class="section article__head">
+      <h1 class="page-title">Firefox OS, Animations &amp; the Dark Cubic-Bezier of the Soul</h1>
+
+        <div id="content-bar" class="single">
+          <div class="entry-meta">
+            <p class="entry-posted">on <abbr class="published" title="2015-04-27T07:25:20-07:00">April 27, 2015</abbr>
+              by <a href="https://hacks.mozilla.org/author/dietrichmozilla-com/" title="Posts by dietrich" class="url fn" rel="author">dietrich</a></p>
+            <p class="entry-cat">in
+              <a href="https://hacks.mozilla.org/category/javascript/animations/" rel="category tag">Animations</a> <a href="https://hacks.mozilla.org/category/boottogecko/" rel="category tag">Boot to Gecko (B2G)</a> <a href="https://hacks.mozilla.org/category/featured/" rel="category tag">Featured Article</a> <a href="https://hacks.mozilla.org/category/firefox-os/" rel="category tag">Firefox OS</a> <a href="https://hacks.mozilla.org/category/performance/" rel="category tag">Performance</a>      </p>
+          </div>
+
+          <ul class="entry-extra">
+            <li class="comments">
+              <a href="https://hacks.mozilla.org/2015/04/firefox-os-animations-the-dark-cubic-bezier-of-the-soul/#comments">12 comments</a>
+            </li>
+            <li class="share"><div class="socialshare" data-type="small-bubbles"><div class="dropdown-toggle" data-toggle="socialshare">    <a class="share-button" role="button" href="#" aria-controls="share-options" aria-expanded="false"><span>Share This</span></a>    <div class="share-options">        <ul>            <li><div data-show-face="false" data-height="20" data-width="105" data-layout="button_count" data-send="false" class="fb-like"></div></li>            <li><div class="g-plusone"></div></li>            <li><a data-url="https://hacks.mozilla.org/2015/04/firefox-os-animations-the-dark-cubic-bezier-of-the-soul/" data-text="Firefox OS, Animations &amp; the Dark Cubic-Bezier of the Soul" data-related="mozhacks" data-via="mozhacks" href="https://twitter.com/share" class="twitter-share-button"></a></li>        </ul>    </div></div></div></li>
+          </ul>
+      </div>
+    </div>
+    <main class="recent section">
+      <article class="post" role="article">
+        <div>
+          <p>I’ve been using Firefox OS daily for a couple of years now (wow, time flies!). While performance has steadily improved with efforts like <a title="Hacks post on Project Silk" href="https://hacks.mozilla.org/2015/01/project-silk/">Project Silk</a>, I’ve often noticed delays in the user interface. I assumed the delays were because the hardware was well&nbsp;below&nbsp;the “flagship” hardware I’ve become accustomed to with Android and iOS devices.</p>
+          <p>Last year, I built Firefox OS for a Nexus 4 and started using that as my daily phone. Quickly I realized that even with better hardware, I sometimes had to wait on Firefox OS for basic interactions, even when the task wasn’t computationally intensive. I moved on to a Nexus 5 and then a Sony Z3 Compact, both with better specs than the Nexus 4, and experienced the same thing.</p>
+        </div>
+        <p>Time passed. Frustration grew. <a title="Axiom: Blog posts should have LOTR quotes." href="http://www.imdb.com/character/ch0000136/quotes" target="_blank"><em>Whispers of a nameless fear…</em></a></p>
+        <h3>Running the numbers</h3>
+        <p>While reading <a title="Ralph Thomas on Twitter" href="https://twitter.com/i_am_ralpht" target="_blank">Ralph Thomas’s</a> post about <a title="Creating Animations and Interactions with Physical Models" href="http://iamralpht.github.io/physics/" target="_blank">creating animations based on physical models</a>, I wondered about the implementation of animations in Firefox OS, and how that might be involved in this problem. I performed an audit&nbsp;of the number of instances of different animations, grouped by their duration. I&nbsp;removed progress indicators and things like the boot shutdown animation. Here are the animation and transition durations in Firefox OS, grouped by duration, for transitional interactions like scaling, opening, closing and sliding:</p>
+        <ul>
+          <li>0.1s: 15</li>
+          <li>0.2s: 57</li>
+          <li>0.3s: 79</li>
+          <li>0.4s: 40</li>
+          <li>0.5s:&nbsp;78</li>
+          <li>0.6s: 8</li>
+        </ul>
+        <p>A couple of things stand out. First, we have a pretty wide distribution of animation durations. Second, the vast majority of the animations are more than 300ms long!</p>
+        <p>In fact, in more than 80 animations we are making the user wait <em>more than half a second</em>. These slow animations are <a title="Even Mr. Incredible..." href="https://www.youtube.com/watch?v=dK_OKGELcn0&amp;t=140" target="_blank">dragging us down</a>, resulting in a poorer overall&nbsp;experience&nbsp;of Firefox OS.</p>
+        <h3>How did we get here?</h3>
+        <p>The Firefox OS UX&nbsp;and interaction designers didn’t huddle in a room and design each interaction to be intentionally slow. The engineers who implemented these animations didn’t ever think to themselves <em>“this feels really responsive… let’s make it slower!”</em></p>
+        <p>My theory is that interactions like these don’t feel slow while you’re designing and implementing them, because you’re working with a single interaction at a time. When designing and developing an animation, I look for fluidity of motion, the aesthetics of that single action and how the visual impact enhances the task at hand,&nbsp;and then I iterate on duration and effects until it feels right.</p>
+        <p>We do have <a title="Firefox OS Responsiveness &amp; Performance Guidelines (PDF)" href="https://mozilla.app.box.com/s/aww17rx74k7fjds5vada" target="_blank">guidelines for responsiveness&nbsp;and user-perceived performance in Firefox OS</a>, written up by <a title="Gordon Brander on Twitter" href="https://twitter.com/gordonbrander" target="_blank">Gordon Brander</a>, which you can see in the screenshot&nbsp;below.&nbsp;(Click the image for a larger, more readable version.) However, those guidelines don’t cover the sub-second period between the initial perception of cause and effect and the next actionable state of the user interface.</p>
+        <div><a href="https://hacks.mozilla.org/files/2015/04/Screenshot-2015-04-18-09.38.10.png"><img class="alignnone  wp-image-28749" src="https://hacks.mozilla.org/files/2015/04/Screenshot-2015-04-18-09.38.10-250x122.png" alt="Screenshot 2015-04-18 09.38.10" height="260" width="476"></a></div>
+        <div></div>
+        <div>
+          <p>Users have an entirely different experience than we do as developers and designers. Users make their way through our animations while hurriedly sending a text message, trying to capture that perfect moment on camera, entering their username and password, or arduously uploading a bunch of images one at a time. People are trying to get from point A to point B. They want to complete a task… well, actually not just one: Smartphone users are trying to complete <em><a title="Tecmark Survey of UK Smartphone Users" href="http://www.tecmark.co.uk/smartphone-usage-data-uk-2014/" target="_blank">221 tasks every day</a></em>, according to a study in the UK last October by Tecmark. All those animations add up! I assert&nbsp;that&nbsp;the aggregate of those 203 animations in <a href="https://developer.mozilla.org/en-US/Firefox_OS/Developing_Gaia" title="Developing Gaia" target="_blank">Gaia</a> that are&nbsp;300ms and longer contributes to the frustrating feeling of slowness I was experiencing before digging into this.</p>
+          <h3>Making it feel fast</h3>
+          <p>So I tested this theory, by changing all animation durations in Gaia to 200ms, as a starting point. The result? <strong>Firefox OS feels far more responsive.</strong> Moving through tasks and navigating around the OS felt quick but not abrupt. The camera snaps to readiness. Texting feels so much more fluid and snappy. Apps pop up, instead of slowly hauling their creaky bones out of bed. The Rocketbar gets closer to living up to its name (<a title="Bug 1050411 - when activating rocketbar, the keyboard slides up really late" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1050411" target="_blank">though I still think the keyboard should animate up while the bar becomes active</a>).</p>
+          <p>Here’s a demo of some of our animations side by side, before and after this patch:</p>
+        </div>
+        <div>
+          <p><iframe src="https://www.youtube.com/embed/DaZbVmv_nPg?feature=oembed" allowfullscreen="" frameborder="0" height="375" width="500"></iframe></p>
+        </div>
+        <div>
+          <p>There are a couple of things we can do about this&nbsp;in Gaia:</p>
+        </div>
+        <ol>
+          <li><a title="Bug 1143226 - animations throughout Gaia combine for a generally sluggish user experience" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1143226" target="_blank">I filed a bug to get this change landed in Gaia</a>. The 200ms duration is a first stab&nbsp;at this until we can do further testing. Better to err on the snappy side instead of the sluggish side. We’ve got the thumbs-up from most of the 16 developers who had to review the changes, and are now working with the UX team to sign off&nbsp;before it can land. <a title="Kevin Grandon on Twitter" href="https://twitter.com/kevining" target="_blank">Kevin Grandon</a> helped by <a title="Bug 1152591 - Implement a CSS variable to control gaia transitions" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1152591" target="_blank">adding a CSS variable that we can use across all of Gaia</a>, which will make it easier to implement these types of changes OS-wide in the future as we&nbsp;learn more.</li>
+          <li>I’m working with the Firefox OS UX team to define global and consistent best-practices for animations. These guidelines will not&nbsp;be correct 100% of the time, but can be a starting point when implementing new animations, ensuring that the defaults are based on research and experience.</li>
+        </ol>
+        <div>If you are a Firefox OS user, <a title="Report a Firefox OS bug" href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox%20OS" target="_blank">report bugs</a> if you experience anything that feels slow. By reporting a bug, you can make change happen and help improve the user experience for everyone on Firefox OS.</div>
+        <div></div>
+        <p></p>
+        <div>If you are a developer or designer, what are your animation best-practices? What user feedback have you received on the animations in your Web projects? Let us know in the comments below!</div>
+        <p></p>
+        <footer class="entry-meta">
+          <p>Posted by <a href="https://hacks.mozilla.org/author/dietrichmozilla-com/" title="Posts by dietrich" class="url fn" rel="author">dietrich</a>
+            on <time datetime="2015-04-27T07:25:20-07:00">April 27, 2015</time>
+            at <time datetime="PDT07:25:20-07:00">07:25</time></p>
+            <div class="share"><div class="socialshare" data-type="small-bubbles"><div class="dropdown-toggle" data-toggle="socialshare">    <a class="share-button" role="button" href="#" aria-controls="share-options" aria-expanded="false"><span>Share This</span></a>    <div class="share-options">        <ul>            <li><div data-show-face="false" data-height="20" data-width="105" data-layout="button_count" data-send="false" class="fb-like"></div></li>            <li><div class="g-plusone"></div></li>            <li><a data-url="https://hacks.mozilla.org/2015/04/firefox-os-animations-the-dark-cubic-bezier-of-the-soul/" data-text="Firefox OS, Animations &amp; the Dark Cubic-Bezier of the Soul" data-related="mozhacks" data-via="mozhacks" href="https://twitter.com/share" class="twitter-share-button"></a></li>        </ul>    </div></div></div></div>
+        </footer>
+      </article>
+    </main>
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        yay websites
+      </div>
+    </footer>
+  </div>
+  <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script>
+</body>
+</html>
