@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <svg width=0 height=0>
+      <defs>
+        <clipPath id="dino" transform="scale(.609375)">
+          <path d="M5.5,62.5 L38.2,54.3 C28.9,61.2 8.6,76.8 0,87.9 L0.6,89.4 C9.5,85.9 21.5,81.6 31.8,77.9 C26.7,80.8 12.6,91.4 5.5,103.5 L6.2,105.2 C15.5,100.8 33.1,92.6 33.1,92.8 C23.8,101.2 16.0,111.0 11.7,120.6 L12.4,122.4 L38.5,109.0 C32.9,114.1 25.6,122.2 21.8,133.7 L22.7,135.3 L39.4,123.7 C36.0,127.5 32.0,134.2 30.4,139.7 L31.3,141.5 C35.3,139.5 41.1,136.6 48.7,134.2 C44.0,137.3 39.8,140.0 37.3,143.1 L37.8,144.6 C40.0,144.9 45.4,145.1 45.4,145.1 L33.8,151.3 C33.8,151.3 46.0,167.8 65.4,179.2 C87.0,192.1 109.5,194.1 120.6,194.1 C127.1,194.1 133.1,193.4 134.6,193.2 C134.6,192.3 133.5,187.4 132.4,184.7 C133.7,182.7 136.2,174.5 137.1,169.6 C140.6,151.8 142.0,145.1 158.4,136.4 C162.0,134.6 168.2,130.4 174.5,130.4 C182.5,130.4 193.6,134.4 200.5,135.7 C205.2,136.6 209.2,137.3 212.3,137.3 C217.7,137.3 228.8,130.0 233.5,126.2 C233.9,126.4 236.1,126.8 238.6,126.8 C239.9,126.8 241.5,126.8 242.8,126.2 C246.8,124.4 256,101.9 256,98.8 C256,96.3 254.6,93.2 253.9,86.1 C253.5,81.9 253.1,72.3 252.4,70.3 C249.0,61.2 229.2,57.2 206.8,47.6 C193.4,41.8 186.7,34.2 186.7,34.2 C186.7,34.2 187.4,32.0 187.4,29.1 C187.4,23.1 182.0,6.9 163.3,6.9 C154.9,6.9 147.1,9.3 144.9,10.0 C140.6,10.0 117.5,0 106.4,0 C79.2,0 54.7,19.1 35.8,34.0 C21.3,45.4 10.4,55.6 5.3,60.7 L5.5,62.5 Z"></path>
+        </clipPath>
+      </defs>
+    </svg>
+    <style>
+      body {
+        background: #e2e2e2;
+        text-align: center;
+      }
+      .branding {
+        font-family: 'Fira Sans';
+        position: relative;
+        color: #000;
+      }
+      .branding * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .demo {
+        width: 156px;
+        height: 120px;
+        background-color: #C13832;
+        position: relative;
+        text-align: left;
+        clip-path: url('#dino');
+        -webkit-clip-path: url('#dino');
+      }
+      .demo-canvas {
+        transition: 1s opacity ease-out;
+        opacity: 0;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+      .branding h1 {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 100px;
+        margin: 0 0 -20px 30px;
+        transform: rotate(-2deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="branding">
+      <div class="demo">
+        <canvas class="demo-canvas"></canvas>
+      </div>
+      <h1>Hacks</h1>
+    </div>
+    <script>
+      function demo() {
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth * 2;
+        canvas.height = canvas.offsetHeight * 2;
+        var stars = [];
+        for (var i = 0; i < 100; i++) {
+          stars.push([Math.random() + 1, Math.random(), Math.random() + .1]);
+        }
+        var time = Date.now();
+        function frame() {
+          var since = Date.now() - time;
+          ctx.fillStyle = '#000';
+          ctx.fillRect(0,0,canvas.width,canvas.height);
+          ctx.fillStyle = '#fff';
+          stars.forEach(function (s) {
+            ctx.fillRect(s[0] * canvas.width, s[1] * canvas.height, 2, 2);
+            s[0] = s[0] - s[2] * since / 1000;
+            if (s[0] < 0) {
+              s[0] = 1;
+              s[1] = Math.random();
+              s[2] = Math.random() + .1;
+            }
+          });
+          time = Date.now();
+          requestAnimationFrame(frame);
+        }
+        frame();
+      }
+      function demo2() {
+        var canvas = document.querySelector('canvas');
+        var ctx = canvas.getContext('2d');
+        var width = canvas.width = canvas.offsetWidth * 2;
+        var height = canvas.height = canvas.offsetHeight * 2;
+
+        var scale = 5;
+
+        function line(x0, y0, x1, y1) {
+          ctx.moveTo(x0*scale,y0*scale);
+          ctx.lineTo(x1*scale,y1*scale);
+          return;
+          var dx = Math.abs(x1 - x0);
+          var dy = Math.abs(y1 - y0);
+          var sx = x0 < x1 ? 1 : -1;
+          var sy = y0 < y1 ? 1 : -1;
+          var err = dx - dy;
+          var val;
+
+          do {
+            ctx.fillRect(x0*scale,y0*scale,scale,scale);
+            if (x0 == x1 && y0 == y1) {
+              break;
+            }
+            var e2 = 2 * err;
+            if (e2 > -dy) {
+              err = err - dy;
+              x0 = x0 + sx;
+            }
+            if (e2 < dx) {
+              err = err + dx;
+              y0 = y0 + sy;
+            }
+          } while(true);
+        }
+
+        ctx.translate(width/2, height/2);
+
+        var x1 = -10;
+        var y1 = -10;
+        var x2 = 10;
+        var y2 = -10;
+        var x3 = -10;
+        var y3 = 10;
+        var x4 = 10;
+        var y4 = 10;
+
+        var px1,py1,px2,py2;
+
+        function frame() {
+          var t = Date.now() / 50;
+          ctx.save();
+          ctx.rotate(.02);
+          ctx.drawImage(canvas, 0, 0, width, height, width * -.52, height * -.52, width * 1.04, height * 1.04);
+          ctx.restore();
+          ctx.fillStyle = 'rgba(0,0,0,.1)';
+          ctx.fillRect(-width/2,-height/2,width,height);
+          ctx.strokeStyle = '#fff';
+          var alpha = t / 7;
+          var beta = t / 20;
+          scale = 4 * Math.sin(t/Math.PI) + 6;
+
+          px1 = (x1 * Math.cos(alpha) + y1 * Math.sin(alpha));
+          px2 = (x2 * Math.cos(alpha) + y2 * Math.sin(alpha));
+          px3 = (x3 * Math.cos(alpha) + y3 * Math.sin(alpha));
+          px4 = (x4 * Math.cos(alpha) + y4 * Math.sin(alpha));
+          py1 = Math.sin(beta) * (y1 * Math.cos(alpha) - x1 * Math.sin(alpha));
+          py2 = Math.sin(beta) * (y2 * Math.cos(alpha) - x2 * Math.sin(alpha));
+          py3 = Math.sin(beta) * (y3 * Math.cos(alpha) - x3 * Math.sin(alpha));
+          py4 = Math.sin(beta) * (y4 * Math.cos(alpha) - x4 * Math.sin(alpha));
+          var z = Math.cos(beta) * 10;
+
+          ctx.beginPath();
+
+          line(px1,py1-z,px2,py2-z);
+          line(px1,py1-z,px3,py3-z);
+          line(px4,py4-z,px2,py2-z);
+          line(px4,py4-z,px3,py3-z);
+
+          line(px1,py1+z,px2,py2+z);
+          line(px1,py1+z,px3,py3+z);
+          line(px4,py4+z,px2,py2+z);
+          line(px4,py4+z,px3,py3+z);
+
+          line(px1,py1-z,px1,py1+z);
+          line(px2,py2-z,px2,py2+z);
+          line(px3,py3-z,px3,py3+z);
+          line(px4,py4-z,px4,py4+z);
+
+          ctx.stroke();
+          requestAnimationFrame(frame);
+        }
+        frame();
+      }
+      var demoEl = document.querySelector('.demo-canvas');
+      setTimeout(function () {
+        demoEl.style.opacity = 1;
+        demo2();
+      }, 0);
+    </script>
+  </body>
+</html>
