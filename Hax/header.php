@@ -36,7 +36,7 @@
     <header class="masthead section row">
       <a aria-label="Mozilla links" href="#" id="tabzilla">Mozilla</a>
       <div class="branding block block--3">
-        <h1><a href="<?php bloginfo('url'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/dino.svg" alt="Mozilla"><span>Hacks</span></a></h1>
+        <h1><a href="<?php bloginfo('url'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/mdn-logo.svg" alt="Mozilla"><span>Hacks</span></a></h1>
       </div>
       <div class="search block block--2">
         <form class="search__form" method="get" action="<?php bloginfo('url'); ?>/">
@@ -50,51 +50,3 @@
         <a class="social__link rss" href="" title="Hacks"><i class="fa fa-rss"></i></a>
       </nav>
     </header>
-
-<!--
-<!DOCTYPE html>
-<html <?php language_attributes(); ?> id="hacks-mozilla-org">
-<head>
-  <meta name="viewport" content="width=device-width">
-  <meta charset="utf8">
-
-  <link rel="shortcut icon" type="image/ico" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico">
-  <link rel="home" href="/">
-  <link rel="copyright" href="#copyright">
-  <link rel="stylesheet" type="text/css" media="screen,projection" href="<?php bloginfo('stylesheet_url'); ?>">
-  <link rel="stylesheet" type="text/css" media="print,handheld" href="<?php echo get_template_directory_uri(); ?>/css/print.css">
-  <link rel="stylesheet" type="text/css" media="all" href="https://www.mozilla.org/tabzilla/media/css/tabzilla.css">
-  <?php if ( get_option('mozhacks_share_posts') ) : ?>
-  <link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/socialshare.css">
-  <?php endif; ?>
-  <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>">
-  <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-  <?php if (is_singular()) : ?><link rel="canonical" href="<?php echo the_permalink(); ?>"><?php endif; ?>
-
-  <?php if ( is_singular() ) wp_enqueue_script( 'comment-reply' ); ?>
-
-  <?php wp_head(); ?>
-</head>
-
-<body <?php body_class(); ?>>
-<div id="outer-wrapper">
-  <a href="#" id="tabzilla">Mozilla</a>
-
-  <header id="primary-head">
-    <div class="branding">
-      <div class="demo">
-        <canvas class="demo-canvas"></canvas>
-        <div class="demo-mask">
-        </div>
-      </div>
-      <h1>Hacks</h1>
-    </div>
-
-    <?php include (TEMPLATEPATH . '/searchform.php'); ?>
-
-    <nav class="nav-main">
-    </nav>
-  </header>
-
-  <div id="content">
--->

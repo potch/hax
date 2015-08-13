@@ -17,25 +17,25 @@ html, body {
 }
 
 body {
-  background: #f4f4f4;
+  background: #fafafa;
   color: #333;
   font-family: 'Fira Sans', sans-serif;
   font-size: 100%;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.6;
   margin: 0;
 }
 
 a:link,
 a:visited {
-  color: #C13832;
+  color: #005CA5;
 }
 a:hover {
-  color: #7E2520;
+  color: #0095DD;
 }
 
 .outer-wrapper {
-  box-shadow: 0 4px #C13832 inset;
+  box-shadow: 0 4px #005CA5 inset;
 }
 
 #tabzilla {
@@ -94,8 +94,8 @@ main {
 }
 .branding img {
   display: inline-block;
-  height: 1em;
-  margin-right: .2em;
+  height: 1.2em;
+  margin: -.1em .25em -.1em 0;
   position: relative;
   top: -.1em;
   vertical-align: middle;
@@ -166,19 +166,21 @@ h1, h2, h3, h4, h5 {
 
 .search {
   position: relative;
+  margin-bottom: .5rem;
 }
 .search__input {
   font-size: 1rem;
   font-family: inherit;
-  padding: .3em 1.8em .2em 1em;
+  padding: 0.3em 1.8em 0.2em 1em;
   width: 100%;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 0 1px #fff;
+  border: 0;
+  box-shadow: 0px 0px 0px 1px #ccc;
+  border-radius: 3px;
 }
 .search__badge {
   position: absolute;
   right: .6em;
-  top: .5em;
+  top: .4em;
   color: #666;
 }
 
@@ -216,7 +218,24 @@ h1, h2, h3, h4, h5 {
 
 
 .footer {
-  background: #fff;
+  background: #005CA5;
+  color: #fff;
+  text-align: left;
+}
+.footer a {
+  color: #fff;
+}
+.footer .row {
+  padding: 3rem 0;
+}
+.footer__logo {
+  width: 6rem;
+  margin-right: 48px;
+}
+
+.nobreak {
+  white-space: nowrap;
+  word-wrap: break-word;
 }
 
 .heading a {
@@ -229,6 +248,15 @@ h1, h2, h3, h4, h5 {
 
 .main-content a {
   color: #A40106;
+}
+
+.post__author {
+  margin-top: .4rem;
+}
+
+.post__title {
+  font-size: 2rem;
+  line-height: 1.2em;
 }
 
 @media all and (max-width: 639px) {
@@ -255,6 +283,12 @@ h1, h2, h3, h4, h5 {
   }
   .article {
     font-size: 1.2rem;
+  }
+  .section.masthead {
+    padding-top: 4rem;
+  }
+  .post__title {
+    font-size: 3rem;
   }
 }
 

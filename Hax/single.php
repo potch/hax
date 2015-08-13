@@ -13,6 +13,39 @@ $featured_id = get_cat_ID('Featured Article');
 
 <div id="content-head" class="section">
   <h1 class="post__title"><?php the_title(); ?></h1>
+  <h2 class="post__author">
+    <?php if (function_exists(coauthors)) : ?>
+      <?php $authors = get_coauthors($post->ID); ?>
+      By
+      <?php foreach ($authors as $author) : ?>
+        <?php if($author->user_url) : ?>
+          <a class="url" href="<?php echo $author->user_url; ?>" rel="external me"><?php echo $author->display_name; ?></a>
+        <?php else : ?>
+          <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>"><?php echo $author->display_name; ?></a>
+        <?php endif; ?>
+      <?php endforeach; ?>
+    <?php else : /* if the plugin is disabled, fall back to single author */ ?>
+        <h3>About the Author</h3>
+        <div class="vcard">
+          <h4 class="fn">
+          <?php if (get_the_author_meta('user_url')) : ?>
+            <a class="url" rel="external me" href="<?php the_author_meta('user_url'); ?>"><?php the_author(); ?>
+            <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( get_the_author_meta('user_email'), 48 ).'</span>'); endif; ?>
+            </a>
+          <?php else : ?>
+            <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?>
+            <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( get_the_author_meta('user_email'), 48 ).'</span>'); endif; ?>
+            </a>
+          <?php endif; ?>
+          </h4>
+          <?php if (get_the_author_meta('description')) : ?>
+          <p><?php the_author_meta('description'); ?></p>
+          <?php endif; ?>
+           <?php echo dw_get_author_meta(); ?>
+          <p><a class="url" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">Read more articles by <?php the_author(); ?>&hellip;</a></p>
+        </div>
+    <?php endif; ?>
+  </h2>
   <p class="post__meta">
     Posted on
     <abbr class="published" title="<?php the_time('Y-m-d\TH:i:sP'); ?>">
@@ -41,40 +74,6 @@ $featured_id = get_cat_ID('Featured Article');
     <?php endif; ?>
 
   </p>
-  <?php if (function_exists(coauthors)) : ?>
-    <?php $authors = get_coauthors($post->ID); ?>
-    <?php foreach ($authors as $author) : ?>
-      <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( $author->user_email, 48 ).'</span>'); endif; ?>
-    <?php endforeach; ?>
-    By
-    <?php foreach ($authors as $author) : ?>
-      <?php if($author->user_url) : ?>
-        <a class="url" href="<?php echo $author->user_url; ?>" rel="external me"><?php echo $author->display_name; ?></a>
-      <?php else : ?>
-        <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>"><?php echo $author->display_name; ?></a>
-      <?php endif; ?>
-    <?php endforeach; ?>
-  <?php else : /* if the plugin is disabled, fall back to single author */ ?>
-      <h3>About the Author</h3>
-      <div class="vcard">
-        <h4 class="fn">
-        <?php if (get_the_author_meta('user_url')) : ?>
-          <a class="url" rel="external me" href="<?php the_author_meta('user_url'); ?>"><?php the_author(); ?>
-          <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( get_the_author_meta('user_email'), 48 ).'</span>'); endif; ?>
-          </a>
-        <?php else : ?>
-          <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?>
-          <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( get_the_author_meta('user_email'), 48 ).'</span>'); endif; ?>
-          </a>
-        <?php endif; ?>
-        </h4>
-        <?php if (get_the_author_meta('description')) : ?>
-        <p><?php the_author_meta('description'); ?></p>
-        <?php endif; ?>
-         <?php echo dw_get_author_meta(); ?>
-        <p><a class="url" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">Read more articles by <?php the_author(); ?>&hellip;</a></p>
-      </div>
-  <?php endif; ?>
 </div>
 
 <main id="content-main" class="section article">

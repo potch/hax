@@ -4,7 +4,7 @@
   "description": "New Theme for the Mozilla Hacks Blog",
   "main": "index.js",
   "scripts": {
-    "watch": "onchange Hax/css/*.css -- npm run deploy",
+    "watch": "onchange Hax/* Hax/**/* -- npm run deploy",
     "deploy": "npm run build && npm run copy",
     "build": "postcss -u autoprefixer Hax/css/screen.css > Hax/style.css",
     "copy": "cp -r Hax /Applications/MAMP/htdocs/hacks/wp-content/themes/hax"
