@@ -52,15 +52,9 @@ $featured_id = get_cat_ID('Featured Article');
   </div>
 </header><!-- /#content-head -->
 
-<main id="content-main">
+<main id="content-main" class="section">
 <?php if (have_posts()) : ?>
-  <?php
-    if (is_front_page()) : // if this is the front page, show everything (just in case the static home page isn't used)
-      fc_custom_loop($query_string.'&template=article-%view%');
-    else : // otherwise this is the Articles page and excludes Demos
-      fc_custom_loop($query_string.'&cat=-'.$demo_id.',-'.$featureddemo_id.'&template=article-%view%');
-    endif;
-  ?>
+  <?php fc_custom_loop($query_string.'&template=article-list'); ?>
 
   <?php if (fc_show_posts_nav()) : ?>
     <?php if (function_exists('fc_pagination') ) : fc_pagination(); else: ?>

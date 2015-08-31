@@ -335,30 +335,20 @@ function hacks_comment($comment, $args, $depth) {
   $comment_type = get_comment_type();
 ?>
 
- <li id="comment-<?php comment_ID(); ?>" <?php comment_class('hentry'); ?>>
+ <li id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
   <?php if ( $comment_type == 'trackback' ) : ?>
-    <p class="entry-title">Trackback from <cite><?php comment_author_link(); ?></cite>
-      <span class="comment-meta">on <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>" rel="bookmark" title="Permanent link to this comment by <?php comment_author(); ?>"><abbr class="published" title="<?php comment_date('Y-m-d'); ?>"><?php comment_date('F jS, Y'); ?></abbr> at <?php comment_time(); ?></a>:</span>
-    </p>
   <?php elseif ( $comment_type == 'pingback' ) : ?>
-    <p class="entry-title">Pingback from <cite><?php comment_author_link(); ?></cite>
-      <span class="comment-meta">on <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>" rel="bookmark" title="Permanent link to this comment by <?php comment_author(); ?>"><abbr class="published" title="<?php comment_date('Y-m-d'); ?>"><?php comment_date('F jS, Y'); ?></abbr> at <?php comment_time(); ?></a>:</span>
-    </p>
   <?php else : ?>
     <?php if ( ( $comment->comment_author_url != "http://" ) && ( $comment->comment_author_url != "" ) ) : // if author has a link ?>
-     <p class="entry-title vcard">
+     <b class="comment__title">
        <a href="<?php comment_author_url(); ?>" class="url" rel="nofollow external" title="<?php comment_author_url(); ?>">
-         <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( $comment, 48 ).'</span>'); endif; ?>
          <cite class="author fn"><?php comment_author(); ?></cite>
        </a>
-       <span class="comment-meta">wrote on <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>" rel="bookmark" title="Permanent link to this comment by <?php comment_author(); ?>"><abbr class="published" title="<?php comment_date('Y-m-d'); ?>"><?php comment_date('F jS, Y'); ?></abbr> at <?php comment_time(); ?></a>:</span>
-     </p>
+     </b>
     <?php else : // author has no link ?>
-      <p class="entry-title vcard">
-        <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( $comment, 48 ).'</span>'); endif; ?>
+      <b class="comment__title vcard">
         <cite class="author fn"><?php comment_author(); ?></cite>
-        <span class="comment-meta">wrote on <a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>" rel="bookmark" title="Permanent link to this comment by <?php comment_author(); ?>"><abbr class="published" title="<?php comment_date('Y-m-d'); ?>"><?php comment_date('F jS, Y'); ?></abbr> at <?php comment_time(); ?></a>:</span>
-      </p>
+      </b>
     <?php endif; ?>
   <?php endif; ?>
 
@@ -366,12 +356,14 @@ function hacks_comment($comment, $args, $depth) {
       <p class="mod"><strong><?php _e('Your comment is awaiting moderation.'); ?></strong></p>
     <?php endif; ?>
 
-    <blockquote class="entry-content">
+    <blockquote class="comment__body">
       <?php comment_text(); ?>
     </blockquote>
 
-  <?php if ( (get_option('thread_comments') == true) || (current_user_can('edit_post', $comment->comment_post_ID)) ) : ?>
-    <p class="comment-util"><?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?> <?php if ( current_user_can('edit_post', $comment->comment_post_ID) ) : ?><span class="edit"><?php edit_comment_link('Edit Comment','',''); ?></span><?php endif; ?></p>
+    <a class="comment__meta" href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>" rel="bookmark" title="Permanent link to this comment by <?php comment_author(); ?>"><abbr class="published" title="<?php comment_date('Y-m-d'); ?>"><?php comment_date('F jS, Y'); ?></abbr> at <?php comment_time(); ?></a>
+
+  <?php if ( (get_option('thread_comments') == true) && (current_user_can('edit_post', $comment->comment_post_ID)) ) : ?>
+    <p class="comment__util"><?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?> <?php if ( current_user_can('edit_post', $comment->comment_post_ID) ) : ?><span class="edit"><?php edit_comment_link('Edit Comment','',''); ?></span><?php endif; ?></p>
   <?php endif; ?>
 <?php
 } /* end comment template */
@@ -417,7 +409,7 @@ function fc_category_minusdemo($separator) {
 function fc_category_minusfeatdemo($separator) {
   $first_time = 1;
   foreach((get_the_category()) as $category) :
-    if ( ($category->cat_name != 'Featured Demo') && ($category->cat_name != 'Demo') ) :
+    if ( ($category->cat_name != 'Featured Demo') && ($category->cat_name != 'Demo') && ($category->cat_name != 'Uncategorized') ) :
       if ($first_time == 1) :
         echo '<a href="' . get_category_link( $category->term_id ) . '" rel="category tag" title="' . sprintf( __( "View all posts in %s" ), $category->name ) . '" ' . '>'  . $category->name.'</a>';
         $first_time = 0;

@@ -5,7 +5,7 @@
 <section class="recent content section">
   <h2 class="heading">Recent Articles</h2>
   <ul class="grid">
-    <?php fc_custom_loop('template=article-brief'); ?>
+    <?php fc_custom_loop('template=article-grid'); ?>
   </ul>
 </section>
 

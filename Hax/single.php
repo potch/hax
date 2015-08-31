@@ -13,7 +13,7 @@ $featured_id = get_cat_ID('Featured Article');
 
 <div id="content-head" class="section">
   <h1 class="post__title"><?php the_title(); ?></h1>
-  <h2 class="post__author">
+  <h3 class="post__author">
     <?php if (function_exists(coauthors)) : ?>
       <?php $authors = get_coauthors($post->ID); ?>
       By
@@ -42,7 +42,7 @@ $featured_id = get_cat_ID('Featured Article');
           <p><?php the_author_meta('description'); ?></p>
           <?php endif; ?>
            <?php echo dw_get_author_meta(); ?>
-          <p><a class="url" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">Read more articles by <?php the_author(); ?>&hellip;</a></p>
+          <p><a class="url" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">More articles by <?php the_author(); ?>&hellip;</a></p>
         </div>
     <?php endif; ?>
   </h2>
@@ -59,12 +59,6 @@ $featured_id = get_cat_ID('Featured Article');
       endif; ?>
     </span>
 
-    <?php $comment_count = get_comment_count($post->ID);
-      if ( comments_open() || $comment_count['approved'] > 0 ) : ?>
-      &middot;
-      <a href="<?php comments_link(); ?>"><i class="fa fa-comments"></i> <?php comments_number('No comments yet','1 comment','% comments'); ?></a>
-    <?php endif; ?>
-
     <?php if ( current_user_can( 'edit_page', $post->ID ) ) : ?>
       <span class="edit">
         &middot;
@@ -79,57 +73,35 @@ $featured_id = get_cat_ID('Featured Article');
 <main id="content-main" class="section article">
   <article class="post" role="article">
     <?php the_content('Read more &hellip;'); ?>
-    <hr>
-    <?php if (function_exists(coauthors)) : ?>
-      <?php $authors = get_coauthors($post->ID); ?>
-      <?php foreach ($authors as $author) : ?>
-        <h3>About
-          <?php if($author->user_url) : ?>
-            <a class="url" href="<?php echo $author->user_url; ?>" rel="external me">
-              <?php echo $author->display_name; ?>
-            </a>
-          <?php else : ?>
-            <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">
-              <?php echo $author->display_name; ?>
-            </a>
+    <hr class="dino">
+    <section class="about">
+      <?php if (function_exists(coauthors)) : ?>
+        <?php $authors = get_coauthors($post->ID); ?>
+        <?php foreach ($authors as $author) : ?>
+          <h2 class="about__header">About
+            <?php if($author->user_url) : ?>
+              <a class="url" href="<?php echo $author->user_url; ?>" rel="external me">
+                <?php echo $author->display_name; ?>
+              </a>
+            <?php else : ?>
+              <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">
+                <?php echo $author->display_name; ?>
+              </a>
+            <?php endif; ?>
+          </h3>
+          <?php if ($author->description) : ?>
+            <p><?php echo $author->description; ?></p>
           <?php endif; ?>
-        </h3>
-        <?php if ($author->description) : ?>
-          <p><?php echo $author->description; ?></p>
-        <?php endif; ?>
-        <?php echo dw_get_author_meta($author->ID); ?>
-          <p><a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">Read more articles by <?php echo $author->display_name; ?>&hellip;</a></p>
-        </div>
-      <?php endforeach; ?>
-    <?php else : /* if the plugin is disabled, fall back to single author */ ?>
-        <h3>About the Author</h3>
-        <div class="vcard">
-          <h4 class="fn">
-          <?php if (get_the_author_meta('user_url')) : ?>
-            <a class="url" rel="external me" href="<?php the_author_meta('user_url'); ?>"><?php the_author(); ?>
-            <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( get_the_author_meta('user_email'), 48 ).'</span>'); endif; ?>
-            </a>
-          <?php else : ?>
-            <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?>
-            <?php if (function_exists('get_avatar')) : echo ('<span class="photo">'.get_avatar( get_the_author_meta('user_email'), 48 ).'</span>'); endif; ?>
-            </a>
-          <?php endif; ?>
-          </h4>
-          <?php if (get_the_author_meta('description')) : ?>
-          <p><?php the_author_meta('description'); ?></p>
-          <?php endif; ?>
-           <?php echo dw_get_author_meta(); ?>
-          <p><a class="url" href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">Read more articles by <?php the_author(); ?>&hellip;</a></p>
-        </div>
-    <?php endif; ?>
+          <?php echo dw_get_author_meta($author->ID); ?>
+            <p><a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">More articles by <?php echo $author->display_name; ?>&hellip;</a></p>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </section>
   </article>
+  <?php comments_template(); ?>
 </main><!-- /#content-main -->
 
   <?php endwhile; ?>
-
-<section class="section section--comments">
-  <?php comments_template(); ?>
-</section>
 
 <?php else : ?>
 
