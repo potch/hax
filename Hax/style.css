@@ -399,7 +399,7 @@ p code {
 .comment__meta {
   font-size: .7rem;
 }
-.comment.bypostauthor .comment__title cite:after {
+.comment.bypostauthor .comment__title:after {
   content: 'AUTHOR';
   font-weight: 400;
   font-size: .75rem;

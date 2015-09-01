@@ -1024,18 +1024,18 @@ function dw_get_author_meta($authorID = null) {
   $return = '';
 
   if($website || $facebookURL || $twitterHandle || $gplusURL):
-    $return.= '<ul class="author-meta">';
+    $return.= '<ul class="author-meta fa-ul">';
     if($website):
-      $return.= '<li><a href="'. $website. '" class="website" rel="me">'. str_replace('http://', '', $website). '</a></li>';
+      $return.= '<li class="fa-li fa fa-globe"><a href="'. $website. '" class="website" rel="me">'. str_replace('http://', '', $website). '</a></li>';
     endif;
     if($twitterHandle):
-      $return.= '<li><a href="http://twitter.com/'. $twitterHandle. '" class="twitter" rel="me">@'. $twitterHandle. '</a></li>';
+      $return.= '<li class="fa-li fa fa-twitter"><a href="http://twitter.com/'. $twitterHandle. '" class="twitter" rel="me">@'. $twitterHandle. '</a></li>';
     endif;
     if($facebookURL):
-      $return.= '<li><a href="'. $facebookURL. '" class="facebook" rel="me">Facebook</a></li>';
+      $return.= '<li class="fa-li fa fa-facebook"><a href="'. $facebookURL. '" class="facebook" rel="me">Facebook</a></li>';
     endif;
     if($gplusURL):
-      $return.= '<li><a href="'. $gplusURL. '" class="gplus" rel="me">Google+</a></li>';
+      $return.= '<li class="fa-li fa fa-google-plus"><a href="'. $gplusURL. '" class="gplus" rel="me">Google+</a></li>';
     endif;
     $return.= '</ul>';
   endif;
