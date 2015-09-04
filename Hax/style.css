@@ -40,7 +40,7 @@ a:hover {
 
 #tabzilla {
   position: absolute;
-  top: 0;
+  top: 4px;
   right: 32px;
   display: none;
 }
