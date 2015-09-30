@@ -1,10 +1,7 @@
 <?php get_header(); ?>
 
-<header id="content-head">
+<main id="content-main" class="section error-page">
   <h1 class="page-title">Sorry, we couldn&#8217;t find that</h1>
-</header>
-
-<main id="content-main">
   <div class="fail post">
     <p>We looked everywhere, but we couldn&#8217;t find the page or file you were looking for. A few possible explanations:</p>
     <ul>

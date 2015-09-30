@@ -15,13 +15,17 @@ $featured_id = get_cat_ID('Featured Article');
   <h1 class="post__title"><?php the_title(); ?></h1>
   <h3 class="post__author">
     <?php if (function_exists(coauthors)) : ?>
-      <?php $authors = get_coauthors($post->ID); ?>
+      <?php
+        $authors = get_coauthors($post->ID);
+        $authorPos = 0;
+      ?>
       By
       <?php foreach ($authors as $author) : ?>
+        <?php $authorPos++; ?>
         <?php if($author->user_url) : ?>
-          <a class="url" href="<?php echo $author->user_url; ?>" rel="external me"><?php echo $author->display_name; ?></a>
+          <a class="url" href="<?php echo $author->user_url; ?>" rel="external me"><?php echo $author->display_name; ?></a><?php if($authorPos < count($authors)): ?>,<?php endif; ?>
         <?php else : ?>
-          <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>"><?php echo $author->display_name; ?></a>
+          <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>"><?php echo $author->display_name; ?></a><?php if($authorPos < count($authors)): ?>,<?php endif; ?>
         <?php endif; ?>
       <?php endforeach; ?>
     <?php else : /* if the plugin is disabled, fall back to single author */ ?>
@@ -72,8 +76,7 @@ $featured_id = get_cat_ID('Featured Article');
 
 <main id="content-main" class="section article">
   <article class="post" role="article">
-    <?php the_content('Read more &hellip;'); ?>
-    <hr class="dino">
+    <?php the_content(); ?>
     <section class="about">
       <?php if (function_exists(coauthors)) : ?>
         <?php $authors = get_coauthors($post->ID); ?>

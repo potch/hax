@@ -14,6 +14,7 @@
 
 <?php if ( have_comments() || comments_open() ) : // If there are comments OR comments are open ?>
 <section class="discussion">
+  <hr class="dino">
   <div class="comments">
     <header class="comments__head">
       <h3><?php comments_number('No comments yet', 'One comment', '% comments' );?></h3>
@@ -55,10 +56,14 @@
           <input type="text" name="age" id="age" size="4" tabindex="-1">
         </div>
       <?php endif; ?>
-        <div id="cmt-cmt"><label for="comment"><?php _e('Your comment', 'mozhacks'); ?></label> <textarea name="comment" id="comment" cols="50" rows="10" required="required" aria-required="true"></textarea></div>
-        <div id="comment-submit"><button name="submit" type="submit"><?php _e('Submit Comment', 'mozhacks'); ?></button>
-        <?php comment_id_fields(); ?>
-        <?php do_action('comment_form', $post->ID); ?></div>
+      <div class="field" id="cmt-cmt">
+        <label for="comment"><?php _e('Your comment', 'mozhacks'); ?></label> <textarea name="comment" id="comment" cols="50" rows="10" required="required" aria-required="true"></textarea>
+      </div>
+      <div class="field" id="comment-submit">
+        <button name="submit" type="submit"><?php _e('Submit Comment', 'mozhacks'); ?></button>
+      </div>
+      <?php comment_id_fields(); ?>
+      <?php do_action('comment_form', $post->ID); ?></div>
     </form>
     <?php endif; // end if reg required and not logged in ?>
   </div><?php // end #respond ?>

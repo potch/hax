@@ -1,13 +1,5 @@
 <?php
 /*********
-* Customize the login screen
-*/
-function fc_custom_login() {
-  echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('template_directory') . '/css/login.css">';
-}
-add_action('login_head', 'fc_custom_login');
-
-/*********
 * Style the visual editor to match the theme styles
 */
 add_filter('mce_css', 'my_editor_style');
@@ -1026,16 +1018,16 @@ function dw_get_author_meta($authorID = null) {
   if($website || $facebookURL || $twitterHandle || $gplusURL):
     $return.= '<ul class="author-meta fa-ul">';
     if($website):
-      $return.= '<li class="fa-li fa fa-globe"><a href="'. $website. '" class="website" rel="me">'. str_replace('http://', '', $website). '</a></li>';
+      $return.= '<li><i class="fa-li fa fa-globe"></i><a href="'. $website. '" class="website" rel="me">'. str_replace('http://', '', $website). '</a></li>';
     endif;
     if($twitterHandle):
-      $return.= '<li class="fa-li fa fa-twitter"><a href="http://twitter.com/'. $twitterHandle. '" class="twitter" rel="me">@'. $twitterHandle. '</a></li>';
+      $return.= '<li><i class="fa-li fa fa-twitter"></i><a href="http://twitter.com/'. $twitterHandle. '" class="twitter" rel="me">@'. $twitterHandle. '</a></li>';
     endif;
     if($facebookURL):
-      $return.= '<li class="fa-li fa fa-facebook"><a href="'. $facebookURL. '" class="facebook" rel="me">Facebook</a></li>';
+      $return.= '<li><i class="fa-li fa fa-facebook"></i><a href="'. $facebookURL. '" class="facebook" rel="me">Facebook</a></li>';
     endif;
     if($gplusURL):
-      $return.= '<li class="fa-li fa fa-google-plus"><a href="'. $gplusURL. '" class="gplus" rel="me">Google+</a></li>';
+      $return.= '<li><i class="fa-li fa fa-google-plus"></i><a href="'. $gplusURL. '" class="gplus" rel="me">Google+</a></li>';
     endif;
     $return.= '</ul>';
   endif;
