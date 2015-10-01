@@ -22,6 +22,8 @@ $featured_id = get_cat_ID('Featured Article');
     <?php fc_custom_loop($query_string.'&template=article-list'); ?>
   </ul>
 
+  <hr class="dino">
+
   <?php if (fc_show_posts_nav()) : ?>
     <?php if (function_exists('fc_pagination') ) : fc_pagination(); else: ?>
       <nav class="nav-paging">

@@ -8,6 +8,10 @@ input::-moz-focus-inner {
   padding: 0;
 }
 
+input {
+  line-height: normal;
+}
+
 html {
   font-size: 16px;
 }
@@ -53,7 +57,9 @@ a:hover {
   position: absolute;
   top: 0;
   right: 0;
-  display: none;
+  -webkit-transform-origin: top right;
+      -ms-transform-origin: top right;
+          transform-origin: top right;
 }
 
 .section {
@@ -95,9 +101,6 @@ a:hover {
 
 .branding span {
   display: inline-block;
-  -webkit-transform: rotate(-2deg);
-      -ms-transform: rotate(-2deg);
-          transform: rotate(-2deg);
 }
 .branding h1 {
   font-size: 4em;
@@ -146,7 +149,7 @@ a:hover {
   background: rgba(0,0,0,.5);
   color: #fff;
   font-size: .8rem;
-  font-weight: 300;
+  font-weight: 400;
   left: 0;
   padding: .5em 1em .4em;
   position: absolute;
@@ -163,8 +166,8 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: 'Fira Sans', sans-serif;
-  font-weight: 500;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
   margin: 0;
   line-height: 1.2;
 }
@@ -217,7 +220,11 @@ p code {
 .search__badge {
   position: absolute;
   left: .6em;
-  top: .45em;
+  top: 0;
+  bottom: 0;
+  height: 1.2em;
+  line-height: 1em;
+  margin: auto 0;
   color: #666;
 }
 
@@ -293,12 +300,62 @@ p code {
   word-wrap: break-word;
 }
 
+.heading {
+  margin-top: 1rem;
+}
+
 .heading a {
   text-decoration: none;
 }
 
 .branding a {
   color: #fff;
+}
+
+.branding:hover .logo-askew {
+  -webkit-animation-name: skew;
+          animation-name: skew;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-transform-origin: 86% 15%;
+      -ms-transform-origin: 86% 15%;
+          transform-origin: 86% 15%;
+}
+
+@-webkit-keyframes skew {
+  40% {
+    -webkit-transform: rotate(-16deg);
+            transform: rotate(-16deg);
+  }
+  60% {
+    -webkit-transform: rotate(-8deg);
+            transform: rotate(-8deg);
+  }
+  to {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+}
+
+@keyframes skew {
+  40% {
+    -webkit-transform: rotate(-16deg);
+            transform: rotate(-16deg);
+  }
+  60% {
+    -webkit-transform: rotate(-8deg);
+            transform: rotate(-8deg);
+  }
+  to {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
 }
 
 .main-content a {
@@ -311,6 +368,19 @@ p code {
 
 .post__author {
   margin-top: 1rem;
+  font-size: 1.5rem;
+}
+
+.byline {
+  padding-left: 72px;
+  padding-left: calc(1em + 64px);
+  position: relative;
+}
+
+.byline .avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .post__title {
@@ -340,6 +410,13 @@ p code {
   margin: 2em auto;
 }
 
+.article iframe[src *= "youtube"] {
+  margin: 0 auto;
+  max-width: 90vw;
+  max-height: 50.625vw;
+  display: block;
+}
+
 #content-head .post__meta {
   font-size: .8rem;
 }
@@ -347,7 +424,7 @@ p code {
 .article pre {
   word-wrap: break-word;
   overflow: auto;
-  font-size: .8rem;
+  font-size: 1rem;
 }
 
 .fancy-link,
@@ -531,6 +608,10 @@ hr.dino:after {
     width: 48px;
     height: 48px;
   }
+  .byline {
+    padding-left: 64px;
+    padding-left: calc(48px + 1em);
+  }
   .footer .row {
     padding: 1rem 0 2rem;
   }
@@ -560,6 +641,14 @@ hr.dino:after {
   .category-list__link + .category-list__link:before {
     content: '• ';
   }
+  #tabzilla {
+    -webkit-transform: scale(.5);
+        -ms-transform: scale(.5);
+            transform: scale(.5);
+  }
+  .article pre {
+    font-size: .8rem;
+  }
 }
 
 @media all and (min-width: 800px) {
@@ -584,10 +673,6 @@ hr.dino:after {
 
   html {
     font-size: 16px;
-  }
-
-  #tabzilla {
-    display: block;
   }
 
   .row {

@@ -32,8 +32,11 @@ endwhile; endif;
 
   <?php if (have_posts()) : ?>
   <ul class="article-list">
+    butts
     <?php fc_custom_loop($query_string.'&template=article-list'); ?>
   </ul>
+
+  <hr class="dino">
 
   <?php if (fc_show_posts_nav()) : ?>
     <?php if (function_exists('fc_pagination') ) : fc_pagination(); else: ?>

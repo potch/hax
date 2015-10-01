@@ -2,6 +2,7 @@
 $featured_id = get_cat_ID('Featured Article');
 $categories = array(
   "Add-ons",
+  "Apps",
   "CSS",
   "Developer Tools",
   "Firefox",
@@ -24,6 +25,7 @@ $categories = array(
     <ul class="article-list">
       <?php fc_custom_loop('template=article-list-short'); ?>
     </ul>
+    <h3><a href="<?php echo get_permalink(get_page_by_path('articles'));?>page/2/">Browse All Articles &rarr;</a></h3>
   </div>
   <div class="block block--1">
     <h2 class="heading">Categories</h2>

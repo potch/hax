@@ -10,7 +10,7 @@
 
   <link rel="alternate" type="application/rss+xml" title="Mozilla Hacks &#8211; the Web developer blog RSS Feed" href="<?php bloginfo('rss2_url'); ?>">
 
-  <link href="//fonts.googleapis.com/css?family=Fira+Sans:400,500" rel="stylesheet" type="text/css">
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
   <link href="//addons.cdn.mozilla.net/static/css/tabzilla/tabzilla.css" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
@@ -43,7 +43,7 @@
           <a href="https://www.mozilla.org/">Mozilla</a>
         </div>
         <div class="branding block block--3">
-          <h1><a href="<?php bloginfo('url'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/mdn-logo-mono.svg" alt="Mozilla"><span>Hacks</span></a></h1>
+          <h1><a href="<?php bloginfo('url'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/mdn-logo-mono.svg" alt="Mozilla"><span>Hac<span class="logo-askew">k</span>s</span></a></h1>
         </div>
         <div class="search block block--2">
           <form class="search__form" method="get" action="<?php bloginfo('url'); ?>/">

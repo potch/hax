@@ -1035,4 +1035,11 @@ function dw_get_author_meta($authorID = null) {
   return $return;
 }
 
+/*
+* Try to clean up email addresses a bit.
+*/
+function hacks_author($name) {
+  return preg_replace('/@.+/', '', $name);
+}
+
 ?>
