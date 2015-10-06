@@ -157,13 +157,16 @@ hr.dino:after {
   text-align: left;
   margin: auto;
   max-width: 960px;
+  padding: 0 1em;
   padding: 0 1rem;
 }
 .section + .section {
+  margin-top: 2em;
   margin-top: 2rem;
 }
 .section--fullwidth {
   max-width: 100%;
+  padding: 0 1em;
   padding: 0 1rem;
 }
 .section.article {
@@ -274,6 +277,7 @@ p code {
 }
 
 .listing {
+  padding-left: 96px;
   padding-left: calc(1rem + 72px);
   position: relative;
   min-height: 72px;
@@ -318,6 +322,9 @@ p code {
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
   display: block;
 }
 .footer .block {
@@ -447,7 +454,7 @@ p code {
   display: block;
 }
 
-#content-head .post__meta {
+.post__meta {
   font-size: .8rem;
 }
 
@@ -634,6 +641,7 @@ p code {
     padding: 2.5em 0 2em;
   }
   .listing {
+    padding-left: 64px;
     padding-left: calc(1em + 48px);
     min-height: 48px;
   }
@@ -769,6 +777,7 @@ p code {
   .social__link span {
     display: inline-block;
     height: 0;
+    font-size: 0;
     text-indent: -9999px;
   }
   .social__link:hover {

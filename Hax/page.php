@@ -6,20 +6,7 @@
   <?php while (have_posts()) : the_post(); ?>
     <header id="content-head">
       <h1 class="page-title"><?php the_title(); ?></h1>
-
       <?php if ( current_user_can( 'edit_page', $post->ID ) ) : ?><p class="edit"><?php edit_post_link('Edit Page', '', ''); ?></p><?php endif; ?>
-
-      <div id="content-bar" class="single">
-        <ul class="entry-extra">
-        <?php $comment_count = get_comment_count($post->ID);
-          if ( comments_open() || $comment_count['approved'] > 0 ) : ?>
-          <li class="comments"><a href="<?php comments_link(); ?>"><?php comments_number('No comments yet','1 comment','% comments'); ?></a></li>
-        <?php endif; ?>
-        <?php if ( get_option('mozhacks_share_posts') ) : ?>
-          <li class="share"><div class="socialshare" data-type="small-bubbles"></div></li>
-        <?php endif; ?>
-        </ul>
-      </div>
     </header><!-- /#content-head -->
     <article class="post" id="post-<?php the_ID(); ?>" role="article">
       <?php the_content('Read more&hellip;'); ?>
