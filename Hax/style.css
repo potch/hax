@@ -461,23 +461,29 @@ p code {
   margin-top: 0;
 }
 
-.fancy-link,
-.article a:link,
-h3 a:link,
-h2 a:link
- {
-  background-image: -webkit-linear-gradient(top, transparent 75%, currentColor 75%);
-  background-image: linear-gradient(to bottom, transparent 75%, currentColor 75%);
-  background-repeat: repeat-x;
-  background-size: 2px .1em;
-  background-position: 0 calc(1em + 2px);
-  text-decoration: none;
-  text-shadow:
-    -2px 0 0 #fff,
-    2px 0 0 #fff,
-    0 -2px 0 #fff,
-    0 1px 0 #fff;
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+
+  .fancy-link,
+  .article a:link,
+  h3 a:link,
+  h2 a:link
+   {
+    background-image: -webkit-linear-gradient(top, transparent 75%, currentColor 75%);
+    background-image: linear-gradient(to bottom, transparent 75%, currentColor 75%);
+    background-repeat: repeat-x;
+    background-size: 2px .1em;
+    background-position: 0 calc(1em + 2px);
+    text-decoration: none;
+    text-shadow:
+      -2px 0 0 #fff,
+      2px 0 0 #fff,
+      0 -2px 0 #fff,
+      0 1px 0 #fff;
+  }
+
 }
+
 
 .entry-cat a {
   display: inline-block;
