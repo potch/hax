@@ -1080,21 +1080,36 @@ function hacks_list_authors() {
   // Generate output for authors
   foreach($users as $index=>$user) {
     if($user->total_posts > 1 && $user->description) {
-      // $item = '<li class="vcard" id="author-'.$user->user_login.'">';
-      // $item.= '<h3><a class="url" href="'.get_author_posts_url($user->ID).'">';
-      // if (function_exists('get_avatar')) {
-      //   $item.= get_avatar($user->user_email, 48);
-      // }
-      // $item.= '<cite class="fn">'.$user->display_name.'</cite> <span class="post-count">'.$user->total_posts.' post'.($user->total_posts > 1 ? 's' : '').'</span></a></h3>';
-      // $item.= '<p class="desc">'.$user->description.'</p>';
-      // $item.= dw_get_author_meta($user->ID);
-      // $item.= '</li>';
-
       array_push($return, $user);
     }
   }
 
   return $return;
+}
+
+function hacks_category_link($category) {
+  echo '<a href="' . get_category_link( $category->term_id ) . '" rel="category tag" title="' . sprintf( __( "View all posts in %s" ), $category->name ) . '" ' . '>'  . $category->name.'</a>';
+}
+
+/*********
+* Display the_category(), excluding Featured
+*/
+function hacks_category_list() {
+  $idx = 0;
+  $categories = get_the_category();
+  $num = count($categories);
+  foreach($categories as $category) :
+    $idx++;
+    hacks_category_link($category);
+    if ($idx < $num) :
+      if ($num > 2):
+        echo ', ';
+      endif;
+      if ($num == 2 || ($num > 2 && $num - $idx == 1)):
+        echo ' and ';
+      endif;
+    endif;
+  endforeach;
 }
 
 ?>

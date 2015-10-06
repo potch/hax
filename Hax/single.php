@@ -58,11 +58,7 @@ $featured_id = get_cat_ID('Featured Article');
         <?php the_time(get_option('date_format')); ?>
       </abbr>
       <span class="entry-cat">in
-      <?php if (in_category($featureddemo_id)) :
-          fc_category_minusdemo(' ');
-        else :
-          the_category(' ');
-        endif; ?>
+        <?php hacks_category_list() ?>
       </span>
 
       <?php if ( current_user_can( 'edit_page', $post->ID ) ) : ?>
