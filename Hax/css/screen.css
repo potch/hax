@@ -328,6 +328,15 @@ p code {
   color: #fff;
 }
 
+.branding .logo-askew {
+  animation-name: normal;
+  animation-duration: .6s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  transform-origin: 86% 15%;
+}
+
 .branding:hover .logo-askew {
   animation-name: skew;
   animation-duration: 1.2s;
@@ -335,6 +344,15 @@ p code {
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
   transform-origin: 86% 15%;
+}
+
+@keyframes normal {
+  0% {
+    transform: rotate(-12deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes skew {
