@@ -2,16 +2,6 @@
   box-sizing: border-box;
 }
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-input {
-  line-height: normal;
-}
-
 html {
   font-size: 16px;
 }
@@ -30,6 +20,31 @@ body {
   margin: 0;
 }
 
+h1, h2, h3, h4, h5 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 2.2rem;
+  margin-bottom: .8rem;
+}
+
+h4 {
+  font-size: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
 a:link,
 a:visited {
   color: #005CA5;
@@ -37,6 +52,60 @@ a:visited {
 a:hover {
   color: #0095DD;
 }
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+button {
+  font: inherit;
+  border: 0;
+  padding: .5em .75em;
+  line-height: 1em;
+  background: #00659A;
+  color: #fff;
+}
+button::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+input {
+  line-height: normal;
+}
+
+hr.dino {
+  margin: 2em auto;
+  width: 20em;
+  border: 0;
+  height: 1px;
+  position: relative;
+  background-image: -webkit-linear-gradient(left, #ccc 40%, transparent 40%, transparent 60%, #ccc 60%);
+  background-image: linear-gradient(
+    to right,
+    #ccc 40%,
+    transparent 40%,
+    transparent 60%,
+    #ccc 60%
+  );
+}
+hr.dino:after {
+  content: '';
+  background: url('img/dino-dark.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 2em;
+  height: 2em;
+  opacity: .25;
+  position: absolute;
+  left: 9em;
+  top: -1em;
+  display: block;
+}
+
 
 .outer-wrapper {
   border-top: 2px solid #fff;
@@ -50,6 +119,7 @@ a:hover {
   background-image:
     url(img/blueprint.png),
     linear-gradient(to bottom, #1f4d78, #1862a7);
+  background-color: #1f4d78;
   color: #fff;
 }
 
@@ -62,42 +132,6 @@ a:hover {
           transform-origin: top right;
 }
 
-.section {
-  text-align: left;
-  margin: auto;
-  max-width: 960px;
-  padding: 0 16px;
-}
-.section + .section {
-  margin-top: 16px;
-}
-
-.section--fullwidth {
-  max-width: 100%;
-  padding: 0 16px;
-}
-
-.section.article {
-  padding-bottom: 2rem;
-}
-
-.section--fullwidth > * {
-  margin: auto;
-  max-width: calc(960px - 64px);
-}
-
-.masthead {
-  padding-top: 2.5rem;
-  padding-bottom: 2em;
-  position: relative;
-}
-
-.masthead.row {
-  -webkit-box-align: end;
-  -webkit-align-items: flex-end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
 
 .branding span {
   display: inline-block;
@@ -118,18 +152,47 @@ a:hover {
   vertical-align: middle;
 }
 
-.grid {
-  list-style-type: none;
-  padding: 0;
-  margin: 2rem 0;
+
+.section {
+  text-align: left;
+  margin: auto;
+  max-width: 960px;
+  padding: 0 1rem;
 }
-.grid__item {
-  overflow: hidden;
+.section + .section {
+  margin-top: 2rem;
+}
+.section--fullwidth {
+  max-width: 100%;
+  padding: 0 1rem;
+}
+.section.article {
+  padding-bottom: 2rem;
+}
+
+.section--fullwidth > * {
+  margin: auto;
+  max-width: calc(960px - 64px);
 }
 
 .section + .section.feature {
   margin-top: 0;
 }
+
+
+.masthead {
+  padding-top: 2.5rem;
+  padding-bottom: 2em;
+  position: relative;
+}
+
+.masthead.row {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
 
 .feature {
   background: #f4f4f4;
@@ -163,31 +226,6 @@ a:hover {
 .feature__link:visited {
   color: inherit;
   text-decoration: none;
-}
-
-h1, h2, h3, h4, h5 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 700;
-  margin: 0;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 1.6rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  font-size: 1.2rem;
-  margin-top: 2.2rem;
-  margin-bottom: .8rem;
-}
-
-h4 {
-  font-size: 1rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
 }
 
 .article p {
@@ -235,13 +273,6 @@ p code {
   padding: 0;
 }
 
-.footer .block {
-  -webkit-box-ordinal-group: 2;
-  -webkit-order: 1;
-      -ms-flex-order: 1;
-          order: 1;
-}
-
 .listing {
   padding-left: calc(1rem + 72px);
   position: relative;
@@ -251,10 +282,6 @@ p code {
 .listing .post__title {
   font-size: 1.4rem;
   margin-top: 0;
-}
-
-.listing .post__tease {
-  font-size: .8rem;
 }
 
 .avatar {
@@ -293,7 +320,12 @@ p code {
           flex-shrink: 0;
   display: block;
 }
-
+.footer .block {
+  -webkit-box-ordinal-group: 2;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+}
 
 .nobreak {
   white-space: nowrap;
@@ -362,12 +394,8 @@ p code {
   color: #A40106;
 }
 
-.article__title {
-  margin-top: 0;
-}
-
 .post__author {
-  margin-top: 1rem;
+  margin-top: 2rem;
   font-size: 1.5rem;
 }
 
@@ -388,6 +416,7 @@ p code {
   line-height: 1.2em;
 }
 
+
 .nav-paging {
   overflow: hidden;
 }
@@ -401,7 +430,8 @@ p code {
 
 /* Article */
 
-.article img {
+.article img,
+.article video {
   max-width: 100%;
   height: auto;
   width: auto;
@@ -427,6 +457,10 @@ p code {
   font-size: 1rem;
 }
 
+.article__title {
+  margin-top: 0;
+}
+
 .fancy-link,
 .article a:link,
 h3 a:link,
@@ -450,6 +484,7 @@ h2 a:link
   text-shadow: none;
 }
 
+
 .discussion {
   max-width: 65ch;
 }
@@ -459,7 +494,7 @@ h2 a:link
 }
 .comments .children {
   border-left: 2px solid rgba(0,0,0,.5);
-  padding-left: 1em;
+  padding-left: 2em;
   margin-top: 1em;
 }
 .comment__body {
@@ -511,50 +546,6 @@ h2 a:link
   width: 100%;
 }
 
-button {
-  font: inherit;
-  border: 0;
-  padding: .5em .75em;
-  line-height: 1em;
-  background: #00659A;
-  color: #fff;
-}
-button::-moz-focus-inner {
-	border: 0;
-	padding: 0;
-}
-
-
-hr.dino {
-  margin: 2em auto;
-  width: 20em;
-  border: 0;
-  height: 1px;
-  position: relative;
-  background-image: -webkit-linear-gradient(left, #ccc 40%, transparent 40%, transparent 60%, #ccc 60%);
-  background-image: linear-gradient(
-    to right,
-    #ccc 40%,
-    transparent 40%,
-    transparent 60%,
-    #ccc 60%
-  );
-}
-hr.dino:after {
-  content: '';
-  background: url('img/dino-dark.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 2em;
-  height: 2em;
-  opacity: .25;
-  position: absolute;
-  left: 9em;
-  top: -1em;
-  display: block;
-}
-
 .about {
   margin: 2em 0;
 }
@@ -563,6 +554,11 @@ hr.dino:after {
 /* I need this specificity to defeat font awesome */
 .about .author-meta {
   margin-left: 1.6em;
+}
+
+.about-authors {
+  list-style-type: none;
+  padding: 0;
 }
 
 .article-list {
@@ -595,7 +591,7 @@ hr.dino:after {
     margin-bottom: 1.5em;
   }
   .block + .block {
-    margin-top: 16px;
+    margin-top: 2rem;
   }
   .search {
     max-width: 320px;
@@ -607,6 +603,9 @@ hr.dino:after {
   .avatar {
     width: 48px;
     height: 48px;
+  }
+  .comments .children {
+    padding-left: 1em;
   }
   .byline {
     padding-left: 64px;
@@ -621,6 +620,9 @@ hr.dino:after {
   }
   .feature h1 {
     font-size: 2rem;
+  }
+  .post__tease {
+    font-size: .8em;
   }
   .feature__pane {
     padding: 2.5em 0 2em;
@@ -703,7 +705,7 @@ hr.dino:after {
   .block--3 { -webkit-box-flex: 3; -webkit-flex: 3 3 auto; -ms-flex: 3 3 auto; flex: 3 3 auto; }
 
   .grid {
-    margin-top: 32px;
+    margin-top: 2rem;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -721,21 +723,21 @@ hr.dino:after {
     margin: 0;
   }
   .grid__item:nth-child(n+3) {
-    margin-top: 32px;
+    margin-top: 2rem;
   }
   .grid__item:nth-child(2n) {
-    margin-left: 32px;
+    margin-left: 2rem;
   }
 
   .section {
-    padding: 0 32px;
+    padding: 0 2rem;
   }
   .section + .section {
-    margin-top: 32px;
+    margin-top: 2rem;
   }
 
   .feature__pane {
-    padding-top: 48px;
+    padding-top: 3rem;
   }
 
   .branding h1 {
@@ -757,6 +759,11 @@ hr.dino:after {
     display: inline-block;
     margin-right: .5em;
     color: #fff;
+  }
+  .social__link span {
+    display: inline-block;
+    height: 0;
+    text-indent: -9999px;
   }
   .social__link:hover {
     text-shadow:

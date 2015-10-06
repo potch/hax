@@ -23,9 +23,9 @@ $categories = array(
   <div class="block block--2">
     <h2 class="heading">Recent Articles</h2>
     <ul class="article-list">
-      <?php fc_custom_loop('template=article-list-short'); ?>
+      <?php fc_custom_loop('template=article-list'); ?>
     </ul>
-    <h3><a href="<?php echo get_permalink(get_page_by_path('articles'));?>page/2/">Browse All Articles &rarr;</a></h3>
+    <h3 class="read-more"><a href="<?php echo get_permalink(get_page_by_path('articles'));?>page/2/">Browse All Articles &rarr;</a></h3>
   </div>
   <div class="block block--1">
     <h2 class="heading">Categories</h2>

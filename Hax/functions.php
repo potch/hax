@@ -16,6 +16,10 @@ function my_editor_style($url) {
 */
 remove_action('set_comment_cookies', 'wp_set_comment_cookies');
 
+/* Disable Emojicons */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
 /*********
  * Register and define the Social Sharing setting
  */
@@ -1040,6 +1044,57 @@ function dw_get_author_meta($authorID = null) {
 */
 function hacks_author($name) {
   return preg_replace('/@.+/', '', $name);
+}
+
+/*********
+* Returns author list, but not HTML which is gross.
+* Only authors who have active posts and a bio are included
+*/
+function hacks_list_authors() {
+  global $wpdb;
+
+  $users = get_users(array());
+
+  // Do a custom query to get post counts for everyone
+  // This will save hundreds of queries over "WordPress-style" code
+  $postsByUsersQuery = 'SELECT post_author, COUNT(*) as count, meta_value AS description FROM '.$wpdb->posts.' p, '.$wpdb->usermeta.' um WHERE post_status="publish" AND um.meta_key = "description" AND um.user_id = p.post_author AND meta_value != "" AND post_type = "post" GROUP BY post_author';
+  $postsByUsersResult = $wpdb->get_results($postsByUsersQuery, ARRAY_A);
+  $postsByUsersIndex = array();
+  foreach($postsByUsersResult as $result) {
+    $postsByUsersIndex[$result['post_author']] = array('count'=>$result['count'], 'description'=>$result['description']);
+  }
+
+  // Sort by number of posts
+  foreach($users as $user) {
+    $count = $postsByUsersIndex[$user->ID]['count'];
+    if($count == '') { $count = 0; }
+    $user->total_posts = $count;
+    $user->description = $postsByUsersIndex[$user->ID]['description'];
+  }
+  usort($users, 'sort_objects_by_total_posts');
+  $users = array_reverse($users);
+
+  // Prep column output
+  $return = array();
+
+  // Generate output for authors
+  foreach($users as $index=>$user) {
+    if($user->total_posts > 1 && $user->description) {
+      // $item = '<li class="vcard" id="author-'.$user->user_login.'">';
+      // $item.= '<h3><a class="url" href="'.get_author_posts_url($user->ID).'">';
+      // if (function_exists('get_avatar')) {
+      //   $item.= get_avatar($user->user_email, 48);
+      // }
+      // $item.= '<cite class="fn">'.$user->display_name.'</cite> <span class="post-count">'.$user->total_posts.' post'.($user->total_posts > 1 ? 's' : '').'</span></a></h3>';
+      // $item.= '<p class="desc">'.$user->description.'</p>';
+      // $item.= dw_get_author_meta($user->ID);
+      // $item.= '</li>';
+
+      array_push($return, $user);
+    }
+  }
+
+  return $return;
 }
 
 ?>

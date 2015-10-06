@@ -6,7 +6,7 @@
           <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
           or any later version.
         </p>
-        <img class="footer__logo" src="<?php echo get_template_directory_uri(); ?>/img/dino.svg">
+        <img class="footer__logo" alt="the Mozilla dino logo" src="<?php echo get_template_directory_uri(); ?>/img/dino.svg">
       </div>
     </footer>
   </div>

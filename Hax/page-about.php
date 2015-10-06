@@ -6,19 +6,17 @@ $featureddemo_id = get_cat_ID('Featured Demo');
 $featured_id = get_cat_ID('Featured Article');
 ?>
 
-<?php if (have_posts()) : ?>
+<main id="content-main" class="section">
+  <?php if (have_posts()) : ?>
+
   <?php while (have_posts()) : the_post(); ?>
 
-  <header id="content-head">
-    <ul class="nav-crumbs">
-      <li><a href="<?php bloginfo('url'); ?>" title="Go to the home page">Home</a></li>
-    </ul>
-    <h1 class="page-title"><?php the_title(); ?></h1>
-    <?php if ( current_user_can( 'edit_page', $post->ID ) ) : ?><p class="edit"><?php edit_post_link('Edit Page', '', ''); ?></p><?php endif; ?>
-    <div id="content-bar" class="ignore-me"></div>
-  </header>
+    <header id="content-head">
+      <h1 class="page-title"><?php the_title(); ?></h1>
+      <?php if ( current_user_can( 'edit_page', $post->ID ) ) : ?><p class="edit"><?php edit_post_link('Edit Page', '', ''); ?></p><?php endif; ?>
+      <div id="content-bar" class="ignore-me"></div>
+    </header>
 
-  <main id="content-main">
     <article class="post" id="post-<?php the_ID(); ?>">
       <?php the_content('Read more&hellip;'); ?>
       <?php wp_link_pages(array('before' => '<p class="pages"><b>Pages:</b> ', 'after' => '</p>', 'next_or_number' => 'number')); ?>
@@ -34,7 +32,24 @@ $featured_id = get_cat_ID('Featured Article');
       <?php endif; ?>
     <?php endif; ?>
 
-      <?php comments_template(); ?>
+    <ul id="authors" class="about-authors">
+      <?php $authors = hacks_list_authors(); ?>
+      <?php foreach($authors as $author): ?>
+        <li class="author-listing listing vcard">
+          <h2 class="fn">
+            <?php echo $author->display_name; ?>
+          </h2>
+          <div class="post-count">
+            <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">
+              <?php echo $author->total_posts.' post'.($author->total_posts > 1 ? 's' : ''); ?>
+            </a>
+          </div>
+          <?php echo get_avatar($author, 72) ?>
+          <p class="desc"><?php echo $author->description; ?></p>
+          <?php echo dw_get_author_meta($author->ID); ?>
+        </li>
+      <?php endforeach; ?>
+    </ul>
 
     <?php else : ?>
 
@@ -50,29 +65,6 @@ $featured_id = get_cat_ID('Featured Article');
 
   <?php endif; ?>
 
-  </main><!-- /#content-main -->
-
-  <aside id="content-sub">
-    <ul id="widgets">
-    <?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar('about') ) : else : ?>
-      <li class="widget categories">
-        <h3 class="widgettitle">Articles by Category</h3>
-        <ul class="cat-list" role="navigation">
-         <?php wp_list_categories('show_count=1&hierarchical=0&depth=1&title_li='); ?>
-        </ul>
-      </li>
-      <li class="widget links">
-        <ul>
-        <?php wp_list_bookmarks('category_name=Our Sister Sites&title_li='); ?>
-        </ul>
-      </li>
-    <?php endif; ?>
-    </ul>
-  </aside><!-- /#content-sub -->
-
-  <!-- Put authors in this section -->
-  <div id="authors" class="about-authors">
-    <?php echo dw_list_authors(); ?>
-  </div>
+</main>
 
 <?php get_footer(); ?>
