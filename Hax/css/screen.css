@@ -329,11 +329,11 @@ p code {
 }
 
 .branding .logo-askew {
-  animation-name: normal;
+  animation-name: unskew;
   animation-duration: .6s;
   animation-fill-mode: forwards;
   animation-iteration-count: 1;
-  animation-timing-function: linear;
+  animation-timing-function: cubic-bezier(.75, -2, .75, 2);
   transform-origin: 86% 15%;
 }
 
@@ -346,7 +346,7 @@ p code {
   transform-origin: 86% 15%;
 }
 
-@keyframes normal {
+@keyframes unskew {
   0% {
     transform: rotate(-12deg);
   }
