@@ -561,8 +561,25 @@ p code {
 
 .about {
   margin: 2em 0;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-top: 10px solid #235D9C;
+}
+.about a{
+  text-shadow: none !important;
 }
 .about__header {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+}
+.about__header a.url {
+    background-image: none;
+}
+.about .more-article-btn{
+  background-color: #235D9C;
+  color: #fff;
+  padding: 10px;
 }
 /* I need this specificity to defeat font awesome */
 .about .author-meta {
