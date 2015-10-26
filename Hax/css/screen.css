@@ -228,12 +228,15 @@ hr.dino:after {
   margin-bottom: .75rem;
 }
 
-p code {
-  font-size: .8rem;
-  padding: .1rem;
+.post code {
   background: #eee;
   position: relative;
-  top: -.11rem;
+  word-wrap: break-word;
+}
+
+.post pre {
+  background: #eee;
+  margin: 2em 0;
 }
 
 .search {
@@ -423,7 +426,7 @@ p code {
 }
 
 .article iframe[src *= "youtube"] {
-  margin: 0 auto;
+  margin: 2em auto;
   max-width: 90vw;
   max-height: 50.625vw;
   display: block;
@@ -709,7 +712,9 @@ p code {
     text-align: left;
   }
 
-  .post {
+  .post p,
+  .post ul,
+  .post ol {
     max-width: 65ch;
   }
 
