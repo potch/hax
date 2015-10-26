@@ -354,6 +354,22 @@ hr.dino:after {
   color: #fff;
 }
 
+.branding .logo-askew {
+  -webkit-animation-name: unskew;
+          animation-name: unskew;
+  -webkit-animation-duration: .6s;
+          animation-duration: .6s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: cubic-bezier(.75, -2, .75, 2);
+          animation-timing-function: cubic-bezier(.75, -2, .75, 2);
+  -webkit-transform-origin: 86% 15%;
+      -ms-transform-origin: 86% 15%;
+          transform-origin: 86% 15%;
+}
+
 .branding:hover .logo-askew {
   -webkit-animation-name: skew;
           animation-name: skew;
@@ -368,6 +384,28 @@ hr.dino:after {
   -webkit-transform-origin: 86% 15%;
       -ms-transform-origin: 86% 15%;
           transform-origin: 86% 15%;
+}
+
+@-webkit-keyframes unskew {
+  0% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes unskew {
+  0% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  to {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
 }
 
 @-webkit-keyframes skew {
