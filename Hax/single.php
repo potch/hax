@@ -52,7 +52,7 @@ $featured_id = get_cat_ID('Featured Article');
           </div>
       <?php endif; ?>
     </h2>
-    <p class="post__meta">
+    <div class="post__meta">
       Posted on
       <abbr class="published" title="<?php the_time('Y-m-d\TH:i:sP'); ?>">
         <?php the_time(get_option('date_format')); ?>
@@ -60,7 +60,6 @@ $featured_id = get_cat_ID('Featured Article');
       <span class="entry-cat">in
         <?php hacks_category_list() ?>
       </span>
-
       <?php if ( current_user_can( 'edit_page', $post->ID ) ) : ?>
         <span class="edit">
           &middot;
@@ -68,8 +67,8 @@ $featured_id = get_cat_ID('Featured Article');
           <?php edit_post_link('Edit Post', '', ''); ?>
         </span>
       <?php endif; ?>
-
-    </p>
+      <div class="socialshare" data-type="bubbles"></div>
+    </div>
   </div>
 </div>
 

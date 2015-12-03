@@ -436,6 +436,14 @@ hr.dino:after {
   font-size: .8rem;
 }
 
+.socialshare {
+  margin-top: 1em;
+}
+
+.socialshare, .socialshare * {
+  box-sizing: content-box;
+}
+
 .article pre {
   word-wrap: break-word;
   overflow: auto;
@@ -751,5 +759,10 @@ hr.dino:after {
   }
   .social__link.rss:hover {
     color: #F59336;
+  }
+
+  .socialshare {
+    display: inline-block;
+    margin: 0 0 0 1em;
   }
 }
