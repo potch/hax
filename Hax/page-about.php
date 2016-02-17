@@ -32,25 +32,6 @@ $featured_id = get_cat_ID('Featured Article');
       <?php endif; ?>
     <?php endif; ?>
 
-    <ul id="authors" class="about-authors">
-      <?php $authors = hacks_list_authors(); ?>
-      <?php foreach($authors as $author): ?>
-        <li class="author-listing listing vcard">
-          <h2 class="fn">
-            <?php echo $author->display_name; ?>
-          </h2>
-          <div class="post-count">
-            <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">
-              <?php echo $author->total_posts.' post'.($author->total_posts > 1 ? 's' : ''); ?>
-            </a>
-          </div>
-          <?php echo get_avatar($author, 72) ?>
-          <p class="desc"><?php echo $author->description; ?></p>
-          <?php echo dw_get_author_meta($author->ID); ?>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-
     <?php else : ?>
 
     <div id="fail">
