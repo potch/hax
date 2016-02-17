@@ -358,7 +358,7 @@ function hacks_comment($comment, $args, $depth) {
 
     <a class="comment__meta" href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>" rel="bookmark" title="Permanent link to this comment by <?php comment_author(); ?>"><abbr class="published" title="<?php comment_date('Y-m-d'); ?>"><?php comment_date('F jS, Y'); ?></abbr> at <?php comment_time(); ?></a>
 
-  <?php if ( (get_option('thread_comments') == true) && (current_user_can('edit_post', $comment->comment_post_ID)) ) : ?>
+  <?php if (get_option('thread_comments') == true) : ?>
     <p class="comment__util"><?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?> <?php if ( current_user_can('edit_post', $comment->comment_post_ID) ) : ?><span class="edit"><?php edit_comment_link('Edit Comment','',''); ?></span><?php endif; ?></p>
   <?php endif; ?>
 <?php
