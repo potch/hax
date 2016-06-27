@@ -307,17 +307,9 @@ function hacks_comment($comment, $args, $depth) {
   <?php if ( $comment_type == 'trackback' ) : ?>
   <?php elseif ( $comment_type == 'pingback' ) : ?>
   <?php else : ?>
-    <?php if ( ( $comment->comment_author_url != "http://" ) && ( $comment->comment_author_url != "" ) ) : // if author has a link ?>
-     <b class="comment__title">
-       <a href="<?php comment_author_url(); ?>" class="url" rel="nofollow external" title="<?php comment_author_url(); ?>">
-         <cite class="author fn"><?php comment_author(); ?></cite>
-       </a>
-     </b>
-    <?php else : // author has no link ?>
-      <b class="comment__title vcard">
-        <cite class="author fn"><?php comment_author(); ?></cite>
-      </b>
-    <?php endif; ?>
+    <b class="comment__title vcard">
+      <cite class="author fn"><?php comment_author(); ?></cite>
+    </b>
   <?php endif; ?>
 
     <?php if ($comment->comment_approved == '0') : ?>
