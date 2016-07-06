@@ -182,6 +182,17 @@ add_action( 'admin_init', 'mozhacks_custom_roles');
 
 
 /*********
+ * Allow Contributors to edit their posts and upload media
+ */
+function mozhacks_contributor_capabilities() {
+     $contributor = get_role('contributor');
+     $contributor->add_cap('upload_files');
+     $contributor->add_cap('edit_published_posts');
+}
+add_action('admin_init', 'mozhacks_contributor_capabilities');
+
+
+/*********
 * Load various JavaScripts
 */
 function mozhacks_load_scripts() {
