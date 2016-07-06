@@ -246,8 +246,8 @@ hr.dino:after {
 .search__input {
   font-size: 1rem;
   font-family: inherit;
-  padding: 0 1em 0 2em;
-  line-height: 2em;
+  padding: .5em 1em .5em 2em;
+  line-height: 1em;
   width: 100%;
   border: 0;
   border-radius: 3px;
@@ -724,6 +724,14 @@ hr.dino:after {
   .post ul,
   .post ol {
     max-width: 65ch;
+  }
+
+  .post ol ol {
+    list-style-type: lower-alpha;
+  }
+
+  .post ol ol ol {
+    list-style-type: lower-roman;
   }
 
   .social {

@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "onchange Hax/* Hax/**/* -- npm run deploy",
     "deploy": "npm run build && npm run copy",
-    "build": "cat Hax/css/socialshare.css Hax/css/screen.css | postcss -u autoprefixer > Hax/style.css",
+    "build": "cat Hax/css/normalize.css Hax/css/socialshare.css Hax/css/screen.css | postcss -u autoprefixer > Hax/style.css",
     "precopy": "mkdir -p /Applications/MAMP/htdocs/hacks/wp-content/themes/hax",
     "copy": "cp -r Hax/* /Applications/MAMP/htdocs/hacks/wp-content/themes/hax/"
   },
