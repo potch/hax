@@ -1027,7 +1027,7 @@ hr.dino:after {
 }
 
 
-/* Article */
+/* img */
 
 .article img,
 .article video {
@@ -1045,6 +1045,23 @@ hr.dino:after {
   max-height: 50.625vw;
   display: block;
 }
+
+.article figure {
+  margin: 2em auto;
+}
+.article figure.paragraph {
+  max-width: 65ch;
+}
+.article figcaption {
+  font-size: .8rem;
+  font-style: italic;
+  margin: 0 2em;
+  text-align: center;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #005CA5;
+}
+
+
 
 .post__meta {
   font-size: .8rem;
@@ -1087,6 +1104,10 @@ hr.dino:after {
       2px 0 0 #fff,
       0 -2px 0 #fff,
       0 1px 0 #fff;
+  }
+
+  .article figcaption {
+    border-width: .5px;
   }
 
 }
