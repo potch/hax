@@ -105,6 +105,27 @@ hr.dino:after {
   display: block;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+  margin: 2em 0;
+  border: 1px solid #222;
+}
+
+thead {
+  background: #005CA5;
+  color: #fff;
+}
+
+th {
+  font-weight: 600; /* semibold if we've got it */
+}
+td, th {
+  padding: .5em;
+  border-collapse: collapse;
+  border: 1px solid #888;
+}
 
 .outer-wrapper {
   border-top: 2px solid #fff;
