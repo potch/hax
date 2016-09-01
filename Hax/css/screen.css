@@ -76,6 +76,28 @@ input {
   line-height: normal;
 }
 
+.pullquote {
+  font-size: 1.1rem;
+  background: #eee;
+  border-left: 5px solid #ccc;
+  margin: 2rem 1rem;
+  padding: 1rem;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+
+.pullquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 3.8rem;
+  line-height: 0.1rem;
+  margin-right: 0.10rem;
+  vertical-align: -1.5rem;
+}
+
+.pullquote p {
+  display: inline;
+}
+
 hr.dino {
   margin: 2em auto;
   width: 20em;
@@ -760,6 +782,10 @@ td, th {
 
   .branding h1 {
     text-align: left;
+  }
+
+  .pullquote {
+    max-width: 58ch;
   }
 
   .post p,
