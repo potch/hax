@@ -94,6 +94,10 @@ input {
   vertical-align: -1.5rem;
 }
 
+.pullquote:after {
+  content: no-close-quote;
+}
+
 .pullquote p {
   display: inline;
 }
