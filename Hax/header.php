@@ -4,7 +4,7 @@
 
 <!doctype html>
 <html lang="en-US">
-<head>
+<head data-template-path="<?php echo get_template_directory_uri(); ?>">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
