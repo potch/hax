@@ -8,6 +8,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Metadata for Facebook -->
+  <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
+  <meta property="og:url" content="<?php if (is_singular()) : the_permalink(); else : bloginfo('url'); endif; ?>">
+  <meta property="og:title" content="<?php if (is_singular()) : single_post_title(); else : bloginfo('name'); endif; ?>">
+  <meta property="og:description" content="<?php fc_meta_desc(); ?>">
+<?php if (is_singular() && $thumbs = get_attached_media('image')) : ?>
+  <?php foreach ($thumbs as $thumb) : ?>
+    <?php $thumb = wp_get_attachment_image_src( $thumb->ID, 'large' ); ?>
+    <meta property="og:image" content="<?php echo $thumb['0']; ?>">
+  <?php endforeach; ?>
+<?php endif; ?>
+
+  <!-- Metadata for Twitter -->
+  <meta property="twitter:title" content="<?php if (is_singular()) : single_post_title(); else : bloginfo('name'); endif; ?>">
+  <meta property="twitter:description" content="<?php fc_meta_desc(); ?>">
+<?php if (is_singular() && $thumbs = get_attached_media('image')) : ?>
+  <meta name="twitter:card" content="summary_large_image">
+  <?php foreach ($thumbs as $thumb) : ?>
+    <?php $thumb = wp_get_attachment_image_src( $thumb->ID, 'large' ); ?>
+    <meta property="twitter:image" content="<?php echo $thumb['0']; ?>">
+  <?php endforeach; ?>
+<?php else : ?>
+  <meta name="twitter:card" content="summary">
+<?php endif; ?>
+<?php if (get_option('mozhacks_twitter_username')) : ?>
+  <meta name="twitter:site" content="@<?php echo sanitize_text_field(get_option('mozhacks_twitter_username')); ?>">
+<?php endif; ?>
+
   <link rel="alternate" type="application/rss+xml" title="Mozilla Hacks &#8211; the Web developer blog RSS Feed" href="<?php bloginfo('rss2_url'); ?>">
 
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
