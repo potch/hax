@@ -35,6 +35,18 @@ function mozhacks_admin_init(){
     'reading',
     'default'
   );
+
+  register_setting(
+    'reading',
+    'mozhacks_twitter_username'
+  );
+  add_settings_field(
+    'twitter_username',
+    __('Twitter username', 'mozhacks'),
+    'mozhacks_settings_field_twitter_username',
+    'reading',
+    'default'
+  );
 }
 add_action('admin_init', 'mozhacks_admin_init');
 
@@ -50,6 +62,17 @@ function mozhacks_settings_field_share_posts() {
 	</label>
 	</div>
 	<?php
+}
+
+// Renders the Twitter account setting field to share via.
+function mozhacks_settings_field_twitter_username() { ?>
+  <div class="layout twitter-username">
+  <label>
+    <input type="text" id="mozhacks_twitter_username" name="mozhacks_twitter_username" value="<?php echo get_option('mozhacks_twitter_username'); ?>">
+    <p class="description"><?php _e('The Twitter account for attribution when sharing. Appears as "via @username" at the end of the tweet, and Twitter may suggest related accounts to follow. Leave this blank for no attribution.', 'mozhacks'); ?></p>
+  </label>
+  </div>
+  <?php
 }
 
 /*********
