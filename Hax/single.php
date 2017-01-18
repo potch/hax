@@ -94,7 +94,7 @@ $featured_id = get_cat_ID('Featured Article');
             <p><?php echo $author->description; ?></p>
           <?php endif; ?>
           <?php echo dw_get_author_meta($author->ID); ?>
-            <p><a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">More articles by <?php echo hacks_author($author->display_name); ?>&hellip;</a></p>
+            <p><a class="url more-article-btn" href="<?php echo get_author_posts_url($author->ID); ?>">More articles by <?php echo hacks_author($author->display_name); ?>&hellip;</a></p>
         <?php endforeach; ?>
       <?php endif; ?>
     </section>
