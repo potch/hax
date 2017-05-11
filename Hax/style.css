@@ -1128,8 +1128,10 @@ td, th {
 
 .article pre {
   word-wrap: break-word;
-  overflow: auto;
   font-size: 1rem;
+  max-height: 75vh;
+  overflow: auto;
+  padding: 0.5em;
 }
 
 .article__title {
@@ -1211,6 +1213,12 @@ td, th {
   margin-left: .5rem;
   margin-top: -.1em;
   border-radius: .2em;
+}
+.comment__util {
+  font-size: .8em;
+}
+.comment__util * + *:before {
+  content: ' • ';
 }
 
 #cmt-ackbar {

@@ -525,8 +525,10 @@ td, th {
 
 .article pre {
   word-wrap: break-word;
-  overflow: auto;
   font-size: 1rem;
+  max-height: 75vh;
+  overflow: auto;
+  padding: 0.5em;
 }
 
 .article__title {
