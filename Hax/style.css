@@ -674,7 +674,6 @@ hr.dino {
   border: 0;
   height: 1px;
   position: relative;
-  background-image: -webkit-linear-gradient(left, #ccc 40%, transparent 40%, transparent 60%, #ccc 60%);
   background-image: linear-gradient(
     to right,
     #ccc 40%,
@@ -728,8 +727,6 @@ td, th {
 
 .header {
   background-image:
-    url(img/blueprint.png), -webkit-linear-gradient(top, #1f4d78, #1862a7);
-  background-image:
     url(img/blueprint.png),
     linear-gradient(to bottom, #1f4d78, #1862a7);
   background-color: #1f4d78;
@@ -741,7 +738,6 @@ td, th {
   top: 0;
   right: 0;
   -webkit-transform-origin: top right;
-      -ms-transform-origin: top right;
           transform-origin: top right;
 }
 
@@ -804,7 +800,6 @@ td, th {
 
 .masthead.row {
   -webkit-box-align: end;
-  -webkit-align-items: flex-end;
       -ms-flex-align: end;
           align-items: flex-end;
 }
@@ -932,20 +927,16 @@ td, th {
   width: 72px;
   margin-right: 2em;
   -webkit-box-ordinal-group: 1;
-  -webkit-order: 0;
       -ms-flex-order: 0;
           order: 0;
-  -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-          flex-shrink: 0;
-  -webkit-align-self: flex-start;
-      -ms-flex-item-align: start;
-          align-self: flex-start;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
   display: block;
 }
 .footer .block {
   -webkit-box-ordinal-group: 2;
-  -webkit-order: 1;
       -ms-flex-order: 1;
           order: 1;
 }
@@ -979,7 +970,6 @@ td, th {
   -webkit-animation-timing-function: cubic-bezier(.75, -2, .75, 2);
           animation-timing-function: cubic-bezier(.75, -2, .75, 2);
   -webkit-transform-origin: 86% 15%;
-      -ms-transform-origin: 86% 15%;
           transform-origin: 86% 15%;
 }
 
@@ -995,7 +985,6 @@ td, th {
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out;
   -webkit-transform-origin: 86% 15%;
-      -ms-transform-origin: 86% 15%;
           transform-origin: 86% 15%;
 }
 
@@ -1155,7 +1144,6 @@ td, th {
   h3 a:link,
   h2 a:link
    {
-    background-image: -webkit-linear-gradient(top, transparent 75%, currentColor 75%);
     background-image: linear-gradient(to bottom, transparent 75%, currentColor 75%);
     background-repeat: repeat-x;
     background-size: 2px .1em;
@@ -1211,7 +1199,7 @@ td, th {
 .comment__meta {
   font-size: .7rem;
 }
-.comment.bypostauthor .comment__title:after {
+.comment.bypostauthor > .comment__title:after {
   content: 'AUTHOR';
   font-weight: 400;
   font-size: .75rem;
@@ -1387,7 +1375,6 @@ td, th {
   }
   #tabzilla {
     -webkit-transform: scale(.5);
-        -ms-transform: scale(.5);
             transform: scale(.5);
   }
   .article pre {
@@ -1437,20 +1424,16 @@ td, th {
 
   .row {
     -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
         -ms-flex-align: stretch;
             align-items: stretch;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
         -ms-flex-direction: row;
             flex-direction: row;
     -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
@@ -1458,31 +1441,27 @@ td, th {
   .block + .block {
     margin-left: 4rem;
   }
-  .block--1 { -webkit-box-flex: 1; -webkit-flex: 1 1 auto; -ms-flex: 1 1 auto; flex: 1 1 auto; }
-  .block--2 { -webkit-box-flex: 2; -webkit-flex: 2 2 auto; -ms-flex: 2 2 auto; flex: 2 2 auto; }
-  .block--3 { -webkit-box-flex: 3; -webkit-flex: 3 3 auto; -ms-flex: 3 3 auto; flex: 3 3 auto; }
+  .block--1 { -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; }
+  .block--2 { -webkit-box-flex: 2; -ms-flex: 2 2 auto; flex: 2 2 auto; }
+  .block--3 { -webkit-box-flex: 3; -ms-flex: 3 3 auto; flex: 3 3 auto; }
   .block--polite {
     -ms-flex-preferred-size: 0;
         flex-basis: 0;
     -webkit-flex-basis: 40%;
-    -webkit-align-self: center;
-        -ms-flex-item-align: center;
-            align-self: center;
+    -ms-flex-item-align: center;
+        align-self: center;
   }
 
   .grid {
     margin-top: 2rem;
     display: -webkit-box;
-    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   .grid__item {
     -webkit-box-flex: 1;
-    -webkit-flex: 1 40%;
         -ms-flex: 1 40%;
             flex: 1 40%;
     min-width: 200px;
