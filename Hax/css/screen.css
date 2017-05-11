@@ -609,6 +609,12 @@ td, th {
   margin-top: -.1em;
   border-radius: .2em;
 }
+.comment__util {
+  font-size: .8em;
+}
+.comment__util * + *:before {
+  content: ' • ';
+}
 
 #cmt-ackbar {
   position: absolute;
