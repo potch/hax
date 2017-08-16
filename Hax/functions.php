@@ -52,16 +52,16 @@ add_action('admin_init', 'mozhacks_admin_init');
 
 // Render the Social Sharing checkbox on the settings page
 function mozhacks_settings_field_share_posts() {
-	?>
-	<div class="layout share-posts">
-	<label>
-		<input type="checkbox" id="mozhacks_share_posts" name="mozhacks_share_posts" value="1" <?php checked( '1', get_option('mozhacks_share_posts') ); ?> />
-		<span>
-			<?php _e('Add social sharing buttons to posts and pages', 'mozhacks'); ?>
-		</span>
-	</label>
-	</div>
-	<?php
+  ?>
+  <div class="layout share-posts">
+  <label>
+    <input type="checkbox" id="mozhacks_share_posts" name="mozhacks_share_posts" value="1" <?php checked( '1', get_option('mozhacks_share_posts') ); ?> />
+    <span>
+      <?php _e('Add social sharing buttons to posts and pages', 'mozhacks'); ?>
+    </span>
+  </label>
+  </div>
+  <?php
 }
 
 // Renders the Twitter account setting field to share via.
@@ -323,8 +323,8 @@ function fc_honeypot( array $data ){
     wp_die( $message, $title, $args );
     exit(0);
   } else {
-	   return $data;
-	}
+     return $data;
+  }
 }
 add_filter('preprocess_comment','fc_honeypot');
 
@@ -879,7 +879,7 @@ function fc_custom_loop($args) {
        If 'post__in' is in args and 'orderby' is set to 'none', just grab those posts,
        in the order provided in the 'post__in' array.
     */
-    if($loop_orderby && $loop_orderby == 'none' && $loop_post__in)
+    if(isset($loop_orderby) && $loop_orderby == 'none' && $loop_post__in)
     {
         foreach($loop_post__in as $post_id)
             $loop_posts[] = get_post($post_id);

@@ -15,7 +15,7 @@ $featured_id = get_cat_ID('Featured Article');
   <h1 class="post__title"><?php the_title(); ?></h1>
   <div class="byline">
     <h3 class="post__author">
-      <?php if (function_exists(coauthors)) : ?>
+      <?php if (function_exists('coauthors')) : ?>
         <?php
           $authors = get_coauthors($post->ID);
           $authorPos = 0;
@@ -76,7 +76,7 @@ $featured_id = get_cat_ID('Featured Article');
   <article class="post" role="article">
     <?php the_content(); ?>
     <section class="about">
-      <?php if (function_exists(coauthors)) : ?>
+      <?php if (function_exists('coauthors')) : ?>
         <?php $authors = get_coauthors($post->ID); ?>
         <?php foreach ($authors as $author) : ?>
           <h2 class="about__header">About
