@@ -8,58 +8,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Metadata for Facebook -->
-  <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
-  <meta property="og:url" content="<?php if (is_singular()) : the_permalink(); else : bloginfo('url'); endif; ?>">
-  <meta property="og:title" content="<?php if (is_singular()) : single_post_title(); else : bloginfo('name'); endif; ?>">
-  <meta property="og:description" content="<?php fc_meta_desc(); ?>">
-<?php if (is_singular() && $thumbs = get_attached_media('image')) : ?>
-  <?php foreach ($thumbs as $thumb) : ?>
-    <?php $thumb = wp_get_attachment_image_src( $thumb->ID, 'large' ); ?>
-    <meta property="og:image" content="<?php echo $thumb['0']; ?>">
-  <?php endforeach; ?>
-<?php endif; ?>
-
-  <!-- Metadata for Twitter -->
-  <meta property="twitter:title" content="<?php if (is_singular()) : single_post_title(); else : bloginfo('name'); endif; ?>">
-  <meta property="twitter:description" content="<?php fc_meta_desc(); ?>">
-<?php if (is_singular() && $thumbs = get_attached_media('image')) : ?>
-  <meta name="twitter:card" content="summary_large_image">
-  <?php foreach ($thumbs as $thumb) : ?>
-    <?php $thumb = wp_get_attachment_image_src( $thumb->ID, 'large' ); ?>
-    <meta property="twitter:image" content="<?php echo $thumb['0']; ?>">
-  <?php endforeach; ?>
-<?php else : ?>
-  <meta name="twitter:card" content="summary">
-<?php endif; ?>
-<?php if (get_option('mozhacks_twitter_username')) : ?>
-  <meta name="twitter:site" content="@<?php echo sanitize_text_field(get_option('mozhacks_twitter_username')); ?>">
-<?php endif; ?>
-
-  <link rel="alternate" type="application/rss+xml" title="Mozilla Hacks &#8211; the Web developer blog RSS Feed" href="<?php bloginfo('rss2_url'); ?>">
+  <?php get_template_part('includes/metadata'); ?>
 
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-  <link href="//addons.cdn.mozilla.net/static/css/tabzilla/tabzilla.css" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
-
-  <title><?php if (( is_single() || is_page() ) && (!is_front_page()) ) : ?><?php wp_title($sep = ''); ?> &#x2605;
-    <?php elseif ( is_search() ) : ?>Search results for &#8220;<?php the_search_query(); ?>&#8221; &#x2605;
-    <?php elseif ( is_category('Demo') ) : ?>Demos &#x2605;
-    <?php elseif ( is_category('Featured Demo') ) : ?>Featured Demos &#x2605;
-    <?php elseif ( is_category('Featured Article') ) : ?>Featured Articles &#x2605;
-    <?php elseif ( is_category() ) : ?><?php single_cat_title(); ?> Articles &#x2605;
-    <?php elseif ( is_author() ) : ?>Articles by <?php echo get_userdata(intval($author))->display_name; ?> &#x2605;
-    <?php elseif ( is_tag() ) : ?>Articles tagged &#8220;<?php single_tag_title(); ?>&#8221; &#x2605;
-    <?php elseif ( is_day() ) : ?>Articles for <?php the_time('F jS, Y'); ?> &#x2605;
-    <?php elseif ( is_month() ) : ?>Articles for <?php the_time('F Y'); ?> &#x2605;
-    <?php elseif ( is_year() ) : ?>Articles for <?php the_time('Y'); ?> &#x2605;
-    <?php elseif ( is_404() ) : ?>Not Found &#x2605;
-    <?php elseif ( is_home() ) : ?>Articles &#x2605;
-    <?php endif; ?>
-    <?php bloginfo('name'); ?>
-  </title>
 
   <script type="text/javascript">
     window.hacks = {};
@@ -76,17 +30,6 @@
             }
         };
     };
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-35433268-8'],
-              ['_setAllowAnchor', true]);
-    _gaq.push (['_gat._anonymizeIp']);
-    _gaq.push(['_trackPageview']);
-    _gaq.push( removeUtms );
-    (function(d, k) {
-      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
-    })(document, 'script');
   </script>
 
   <?php wp_head(); ?>

@@ -80,11 +80,94 @@ function mozhacks_settings_field_twitter_username() { ?>
 */
 remove_action('wp_head', 'wp_generator');
 
-/*********
+
+/**
+* Replace the default title separator.
+*/
+function mozhacks_document_title_separator() {
+  $sep = '–'; // this is en dash, not a hyphen
+  return $sep;
+}
+add_filter('document_title_separator', 'mozhacks_document_title_separator');
+
+
+/**
+* Returns the page number currently being browsed.
+*/
+function mozhacks_page_number() {
+  global $paged; // Contains page number.
+  $sep = ' ' . mozhacks_document_title_separator() . ' ';
+  if ($paged >= 2) {
+    return $sep . sprintf(__('Page %s', 'mozhacks'), $paged);
+  }
+}
+
+
+/**
+* Prints a nice multipart page title.
+* Used in the meta tags where wp_title() doesn't cut it.
+*/
+function mozhacks_meta_page_title() {
+    $pagenum = mozhacks_page_number();
+    $sep = ' ' . mozhacks_document_title_separator() . ' ';
+    $sitename = get_bloginfo('name');
+
+    if (is_single()) {
+        $title = single_post_title('', false) . $sep . $sitename;
+    }
+    elseif (is_home() || is_front_page()) {
+        $title = $sitename . $pagenum;
+        if (get_bloginfo('description', 'display')) {
+            $title .= $sep . get_bloginfo('description', 'display');
+        }
+    }
+    elseif (is_page()) {
+        $title = single_post_title('', false) . $sep . $sitename;
+    }
+    elseif (is_archive()) {
+        if (is_category()) {
+            $title = sprintf(__('Articles in “%s”', 'mozhacks'), single_cat_title('', false)) . $pagenum . $sep . $sitename;
+        } elseif (is_tag()) {
+            $title = sprintf(__('Articles tagged with “%s”','mozhacks'), single_tag_title('', false)) . $pagenum . $sep . $sitename;
+        } elseif (is_author()) {
+            $title = sprintf(__('Articles by %s', 'mozhacks'), get_the_author()) . $pagenum . $sep . $sitename;
+        } elseif (is_day()) {
+            $title = sprintf(__('Articles from %s', 'mozhacks'), get_the_date()) . $pagenum . $sep . $sitename;
+        } elseif (is_month()) {
+            $title = sprintf(__('Articles from %s', 'mozhacks'), get_the_date('F, Y')) . $pagenum . $sep . $sitename;
+        } elseif (is_year()) {
+            $title = sprintf(__('Articles from %s', 'mozhacks'), get_the_date('Y')) . $pagenum . $sep . $sitename;
+        } else {
+            $title = get_the_archive_title() . $pagenum . $sep . $sitename;
+        }
+    } elseif (is_search()) {
+        $title = sprintf(__('Search results for “%s”', 'mozhacks'), esc_html(get_search_query())) . $pagenum . $sep . $sitename;
+    } elseif (is_404()) {
+      $title = __('Not Found', 'mozhacks') . $sep . $sitename;
+    } else {
+      $title = wp_title('', false, 'right') . $pagenum . $sep . $sitename;
+    }
+
+    echo $title;
+}
+
+
+/*
+* Print the current page URL.
+*/
+function mozhacks_current_url() {
+    global $wp;
+    $current_url = esc_url(home_url(add_query_arg(array(),$wp->request)));
+
+    echo $current_url;
+}
+
+
+/**
 * Use auto-excerpts for meta description if hand-crafted exerpt is missing
 */
-function fc_meta_desc() {
-  $post_desc_length  = 25; // auto-excerpt length in number of words
+function mozhacks_meta_desc() {
+  $post_desc_length = 30; // auto-excerpt length in number of words
 
   global $cat, $cache_categories, $wp_query, $wp_version;
   if(is_single() || is_page()) {
@@ -96,6 +179,7 @@ function fc_meta_desc() {
     } else {
       $text = $post->post_content;
     }
+    $text = do_shortcode($text);
     $text = str_replace(array("\r\n", "\r", "\n", "  "), " ", $text);
     $text = str_replace(array("\""), "", $text);
     $text = trim(strip_tags($text));
@@ -118,7 +202,7 @@ function fc_meta_desc() {
     if (!empty($category->category_description)) {
       $description = trim(strip_tags($category->category_description));
     } else {
-      $description = single_cat_title('Articles posted in ');
+      $description = single_cat_title('Articles posted in ', 'mozhacks');
     }
   }
   else {
@@ -129,6 +213,7 @@ function fc_meta_desc() {
     echo $description;
   }
 }
+
 
 /*********
 * Register sidebars
@@ -178,10 +263,17 @@ endif;
 
 
 /*********
-* Activate thumbnails
+* Add theme support
 */
 if ( function_exists( 'add_theme_support' ) ) {
-  add_theme_support ('post-thumbnails');
+  // This theme uses Featured Images (also known as post thumbnails)
+  add_theme_support('post-thumbnails');
+
+  // Let WordPress generate document titles
+  add_theme_support('title-tag');
+
+  // Let WordPress generate feeds
+  add_theme_support('automatic-feed-links');
 }
 
 
