@@ -742,23 +742,32 @@ td, th {
 }
 
 
-.branding span {
-  display: inline-block;
+.branding a {
+  text-decoration: none;
+  display: inline-grid;
+  grid: "logo wordmark" auto
+        "logo title" auto
+       / auto 1fr;
+  grid-column-gap: .25em;
+}
+.branding__wordmark {
+  grid-area: wordmark;
+  height: .4em;
+}
+.branding__title {
+  grid-area: title;
+  text-indent: -.08em;
+}
+.branding__logo {
+  grid-area: logo;
+  height: 1.2em;
+  margin-top: .4rem;
 }
 .branding h1 {
   font-size: 4em;
   line-height: 1em;
-  text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
-}
-.branding img {
-  display: inline-block;
-  height: 1em;
-  margin: -.1em .25em -.1em 0;
-  position: relative;
-  top: -.1em;
-  vertical-align: middle;
 }
 
 
@@ -866,7 +875,6 @@ td, th {
   line-height: 1em;
   width: 100%;
   border: 0;
-  border-radius: 3px;
   -webkit-appearance: none;
 }
 .search__badge {
@@ -954,11 +962,15 @@ td, th {
   text-decoration: none;
 }
 
+.branding span {
+  display: inline-block;
+}
+
 .branding a {
   color: #fff;
 }
 
-.branding .logo-askew {
+.branding a .logo-askew {
   -webkit-animation-name: unskew;
           animation-name: unskew;
   -webkit-animation-duration: .6s;
@@ -973,7 +985,7 @@ td, th {
           transform-origin: 86% 15%;
 }
 
-.branding:hover .logo-askew {
+.branding a:hover .logo-askew {
   -webkit-animation-name: skew;
           animation-name: skew;
   -webkit-animation-duration: 1.2s;
@@ -990,8 +1002,8 @@ td, th {
 
 @-webkit-keyframes unskew {
   0% {
-    -webkit-transform: rotate(-12deg);
-            transform: rotate(-12deg);
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
   to {
     -webkit-transform: rotate(0deg);
@@ -1001,8 +1013,8 @@ td, th {
 
 @keyframes unskew {
   0% {
-    -webkit-transform: rotate(-12deg);
-            transform: rotate(-12deg);
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
   to {
     -webkit-transform: rotate(0deg);
@@ -1012,31 +1024,31 @@ td, th {
 
 @-webkit-keyframes skew {
   40% {
-    -webkit-transform: rotate(-16deg);
-            transform: rotate(-16deg);
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
   }
   60% {
-    -webkit-transform: rotate(-8deg);
-            transform: rotate(-8deg);
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
   }
   to {
-    -webkit-transform: rotate(-12deg);
-            transform: rotate(-12deg);
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
 }
 
 @keyframes skew {
   40% {
-    -webkit-transform: rotate(-16deg);
-            transform: rotate(-16deg);
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
   }
   60% {
-    -webkit-transform: rotate(-8deg);
-            transform: rotate(-8deg);
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
   }
   to {
-    -webkit-transform: rotate(-12deg);
-            transform: rotate(-12deg);
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
   }
 }
 
@@ -1326,6 +1338,7 @@ td, th {
   }
   .branding {
     margin-bottom: 1.5em;
+    text-align: center;
   }
   .block + .block {
     margin-top: 2rem;
@@ -1412,7 +1425,7 @@ td, th {
     font-size: 1rem;
   }
   .masthead {
-    padding-top: 4rem;
+    padding-top: 3rem;
   }
   .post__title {
     font-size: 2.5rem;
@@ -1517,9 +1530,9 @@ td, th {
 
   .social {
     position: absolute;
-    right: 150px;
-    top: .7em;
-    font-size: 1.2em;
+    right: 0;
+    top: 1em;
+    font-size: 1.5em;
   }
   .social__link:link,
   .social__link:visited {

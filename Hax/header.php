@@ -95,11 +95,14 @@
   <div class="outer-wrapper">
     <header class="section section--fullwidth header">
       <div class="masthead row">
-        <div id="tabzilla">
-          <a href="https://www.mozilla.org/">Mozilla</a>
-        </div>
         <div class="branding block block--3">
-          <h1><a href="<?php bloginfo('url'); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/mdn-logo-mono.svg" alt="Mozilla"><span>Hac<span class="logo-askew">k</span>s</span></a></h1>
+          <h1>
+            <a href="<?php bloginfo('url'); ?>">
+              <img class="branding__logo" src="<?php echo get_template_directory_uri(); ?>/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="<?php echo get_template_directory_uri(); ?>/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
         </div>
         <div class="search block block--2">
           <form class="search__form" method="get" action="<?php bloginfo('url'); ?>/">
