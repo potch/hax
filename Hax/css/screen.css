@@ -586,7 +586,7 @@ td, th {
 }
 
 
-.discussion {
+.discussion, .promo {
   max-width: 65ch;
 }
 .comments__list, .comments .children {
@@ -719,12 +719,11 @@ td, th {
 }
 
 .newsletter__input {
-  /*display: block;*/
   width: 15em;
 }
 .newsletter button {
-  /*display: block;*/
   width: 100%;
+  max-width: 15em;
   background: #009A38;
 }
 

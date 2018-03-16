@@ -1,6 +1,6 @@
 <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
   <h2 class="heading">Learn the best of web development</h2>
-  <p class="newsletter__description">Sign up for our newsletter:</p>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
   <input id="fmt" name="fmt" value="H" type="hidden">
   <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
 

@@ -99,6 +99,9 @@ $featured_id = get_cat_ID('Featured Article');
       <?php endif; ?>
     </section>
   </article>
+  <section class="promo">
+    <?php get_template_part('newsletter'); ?>
+  </section>
   <?php comments_template(); ?>
 </main><!-- /#content-main -->
 
