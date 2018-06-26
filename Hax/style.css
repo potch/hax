@@ -1116,21 +1116,42 @@ td, th {
   display: block;
 }
 
-.article figure {
+.article figure,
+.article .wp-caption {
   margin: 2em auto;
 }
 .article figure.paragraph {
   max-width: 65ch;
 }
-.article figcaption {
-  font-size: .8rem;
+.article .wp-caption {
+  max-width: 100%;
+}
+.article figcaption,
+.article .wp-caption-text {
+  font-size: .9rem;
   font-style: italic;
   margin: 0 2em;
-  text-align: center;
   padding-bottom: .5em;
   border-bottom: 1px solid #005CA5;
 }
 
+.article .alignleft {
+  display: inline;
+  float: left;
+  margin: 0 1.5em 1em 0;
+}
+
+.article .alignright {
+  display: inline;
+  float: right;
+  margin: 0 0 1em 1.5em;
+}
+
+.article .aligncenter {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 
 .post__meta {
