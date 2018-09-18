@@ -15,12 +15,12 @@ $featured_id = get_cat_ID('Featured Article');
   <h1 class="post__title"><?php the_title(); ?></h1>
   <div class="byline">
     <h3 class="post__author">
-      <?php if (function_exists(coauthors)) : ?>
+      <?php if (function_exists('coauthors')) : ?>
         <?php
           $authors = get_coauthors($post->ID);
           $authorPos = 0;
         ?>
-        <?php echo get_avatar($authors[0], 64) ?>
+        <?php echo get_avatar($authors[0]->user_email, 64); ?>
         By
         <?php foreach ($authors as $author) : ?>
           <?php $authorPos++; ?>
@@ -76,7 +76,7 @@ $featured_id = get_cat_ID('Featured Article');
   <article class="post" role="article">
     <?php the_content(); ?>
     <section class="about">
-      <?php if (function_exists(coauthors)) : ?>
+      <?php if (function_exists('coauthors')) : ?>
         <?php $authors = get_coauthors($post->ID); ?>
         <?php foreach ($authors as $author) : ?>
           <h2 class="about__header">About
@@ -85,9 +85,7 @@ $featured_id = get_cat_ID('Featured Article');
                 <?php echo hacks_author($author->display_name); ?>
               </a>
             <?php else : ?>
-              <a class="url" href="<?php echo get_author_posts_url($author->ID); ?>">
-                <?php echo hacks_author($author->display_name); ?>
-              </a>
+              <?php echo hacks_author($author->display_name); ?>
             <?php endif; ?>
           </h3>
           <?php if ($author->description) : ?>

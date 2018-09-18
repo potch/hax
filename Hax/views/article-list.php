@@ -1,6 +1,12 @@
 <li class="list-item row listing">
-  <?php $authors = get_coauthors($post->ID); ?>
-  <?php echo get_avatar($authors[0], 72) ?>
+<?php
+  if (function_exists('coauthors')) :
+    $authors = get_coauthors($post->ID);
+    echo get_avatar($authors[0]->user_email, 72);
+  else :
+    echo get_avatar(get_the_author_meta('user_email'), 72);
+  endif;
+?>
   <div class="block block--1">
     <h3 class="post__title">
       <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
