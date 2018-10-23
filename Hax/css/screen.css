@@ -932,6 +932,7 @@ td, th {
   .social__link:link,
   .social__link:visited {
     display: inline-block;
+    vertical-align: middle;
     margin-right: .5em;
     color: #fff;
   }
@@ -956,6 +957,28 @@ td, th {
   }
   .social__link.rss:hover {
     color: #F59336;
+  }
+
+  a.fx-button {
+    font-size: .8rem;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 100px;
+    padding: .5em 1.5em;
+    text-decoration: none;
+    border: 2px solid #16da00;
+    background: #16da00;
+    color: #fff;
+    margin-left: 1em;
+    margin-top: .1em;
+    transition: .1s background-color ease-out,
+                .1s color ease-out;
+  }
+  a.fx-button:hover {
+    background: #fff;
+    color: #16da00;
   }
 
   .socialshare {
