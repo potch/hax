@@ -901,8 +901,18 @@ td, th {
 
   .post p,
   .post ul,
-  .post ol {
+  .post ol,
+  .post dl {
     max-width: 65ch;
+  }
+
+  .post dt {
+    font-weight: bold;
+  }
+
+  .post dd {
+    margin-top: .75rem;
+    margin-bottom: .75rem;
   }
 
   .post ol ol {
