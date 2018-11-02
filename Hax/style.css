@@ -977,6 +977,7 @@ td, th {
 }
 
 .branding a .logo-askew {
+  text-indent: 0;
   -webkit-animation-name: unskew;
           animation-name: unskew;
   -webkit-animation-duration: .6s;

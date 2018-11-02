@@ -417,6 +417,7 @@ td, th {
 }
 
 .branding a .logo-askew {
+  text-indent: 0;
   animation-name: unskew;
   animation-duration: .6s;
   animation-fill-mode: forwards;
