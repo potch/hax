@@ -333,7 +333,7 @@ function mozhacks_load_scripts() {
     }
   }
 
-  // Register and load analytics script with jquery & socialshare dependencies
+  // Register and load analytics script with jquery dependency
   wp_register_script( 'analytics', get_template_directory_uri() . '/js/analytics.js', array('jquery'));
   wp_enqueue_script( 'analytics', get_template_directory_uri() . '/js/analytics.js' );
 }

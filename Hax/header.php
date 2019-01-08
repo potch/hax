@@ -30,18 +30,6 @@
             }
         };
     };
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-35433268-8'],
-              ['_setAllowAnchor', true]);
-    _gaq.push (['_gat._anonymizeIp']);
-    _gaq.push(['_trackPageview']);
-    _gaq.push( removeUtms );
-    (function(d, k) {
-      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = 'https://ssl.google-analytics.com/ga.js';
-      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
-    })(document, 'script');
   </script>
 
   <?php wp_head(); ?>
