@@ -567,11 +567,6 @@ td, th {
     background-size: 2px .1em;
     background-position: 0 calc(1em + 2px);
     text-decoration: none;
-    text-shadow:
-      -2px 0 0 #fff,
-      2px 0 0 #fff,
-      0 -2px 0 #fff,
-      0 1px 0 #fff;
   }
 
   .article figcaption {
