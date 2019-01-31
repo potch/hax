@@ -1,23 +1,23 @@
 <?php get_header();
 $featured_id = get_cat_ID('Featured Article');
 $categories = array(
-  "Add-ons",
-  "Animations",
-  "Apps",
-  "Canvas",
+  "AV1",
+  "Code Cartoons",
   "CSS",
   "Developer Tools",
+  "Dweb",
+  "ES6 In Depth",
   "Firefox",
-  "Firefox OS",
+  "Firefox Releases",
   "Games",
-  "HTML5",
-  "Javascript",
-  "Mobile",
+  "JavaScript",
+  "MDN",
   "Performance",
+  "Rust",
   "Security",
-  "SVG",
-  "Video",
-  "WebGL"
+  "Web of Things",
+  "WebAssembly",
+  "WebVR"
 );
 ?>
 
