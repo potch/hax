@@ -356,7 +356,7 @@ function fc_excerpt($num) {
 */
 function fc_show_posts_nav() {
   global $wp_query;
-  return ($wp_query->max_num_pages > 1) ? TRUE : FALSE;
+  return ($wp_query->max_num_pages > 1) ? true : false;
 }
 
 /*********
@@ -725,10 +725,10 @@ function tmh_by_as_url($by='', $as='') {
     } else {
       $query_string = '';
     }
-    if ($by !== TRUE) {
+    if ($by !== true) {
       $request = preg_replace( '|by/\w+/?|', '', $request);
     }
-    if ($as !== TRUE) {
+    if ($as !== true) {
       $request = preg_replace( '|as/\w+/?|', '', $request);
     }
 
@@ -745,11 +745,11 @@ function tmh_by_as_url($by='', $as='') {
     if ( $wp_rewrite->using_index_permalinks() && ( strlen($by) > 0 || strlen($as) > 0 || '' != $request ) )
       $base .= 'index.php/';
 
-    if ( strlen($by) > 0 AND $by !== TRUE) {
+    if ( strlen($by) > 0 AND $by !== true) {
       $request = ( ( !empty( $request ) ) ? trailingslashit( $request ) : $request ) . user_trailingslashit( 'by/' . $by, 'tmh_sort_by' );
       $result = $base . $request . $pager . $query_string;
     }
-    if ( strlen($as) > 0 AND $as !== TRUE) {
+    if ( strlen($as) > 0 AND $as !== true) {
       $request = ( ( !empty( $request ) ) ? trailingslashit( $request ) : $request ) . user_trailingslashit( 'as/' . $as, 'tmh_view_as' );
       $result = $base . $request . $pager . $query_string;
     }
@@ -771,7 +771,7 @@ add_filter('get_pagenum_link', 'tmh_get_pagenum_link');
 * Set default to true if this call should return the classes string when the
 * query var is not set or is empty.
 */
-function tmh_has_query_var($query_key, $value_to_check, $string_to_echo, $default=FALSE) {
+function tmh_has_query_var($query_key, $value_to_check, $string_to_echo, $default=false) {
   global $wp_query;
 
   $mappings = tmh_article_to_demo_mappings();
@@ -807,7 +807,7 @@ function tmh_parse_query($wp) {
   # demo views. We convert these to article view templates. Don't forget to
   # change this in
   $key = array_search($view_as, tmh_article_to_demo_mappings());
-  $view_as = ($key === FALSE) ? $view_as : $key;
+  $view_as = ($key === false) ? $view_as : $key;
 
   $query_vars['tmh_view_as'] = $view_as;
 }
@@ -828,7 +828,7 @@ function tmh_article_to_demo_mappings() {
 * Get the categories for all posts that are themselves in a particular given category
 */
 $tmh_categories_of_posts_in_category_categories;
-function tmh_categories_of_posts_in_category($cat_id, $exclude_cats=array(), $show_count=TRUE) {
+function tmh_categories_of_posts_in_category($cat_id, $exclude_cats=array(), $show_count=true) {
   // rather than do a complex multi nested select in the DB, we'll do a multistage process
   // first get the posts which are a member of cat_id (and it's child categories)
   $wp_query = new WP_Query();
