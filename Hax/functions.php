@@ -1,15 +1,7 @@
 <?php
-/*********
-* Style the visual editor to match the theme styles
-*/
-add_filter('mce_css', 'my_editor_style');
-function my_editor_style($url) {
-  if ( !empty($url) ) {
-    $url .= ',';
-  }
-  $url .= trailingslashit( get_stylesheet_directory_uri() ) . '/css/ed-content.css';
-  return $url;
-}
+
+// Add styles to post editor (editor-style.css)
+add_editor_style();
 
 /*********
 * Disable comment cookies
