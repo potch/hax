@@ -971,7 +971,7 @@ function fc_custom_loop($args) {
        If 'post__in' is in args and 'orderby' is set to 'none', just grab those posts,
        in the order provided in the 'post__in' array.
     */
-    if($loop_orderby && $loop_orderby == 'none' && $loop_post__in)
+    if(isset($loop_orderby) && $loop_orderby == 'none' && $loop_post__in)
     {
         foreach($loop_post__in as $post_id)
             $loop_posts[] = get_post($post_id);
